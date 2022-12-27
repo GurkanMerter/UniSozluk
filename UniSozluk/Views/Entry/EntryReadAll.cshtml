@@ -1,0 +1,88 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Entry>
+@{
+    ViewData["Title"] = "EntryReadAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+    <!-- Area Chart -->
+    <div class="col-xl-8 col-lg-7">
+        @*  @foreach (var item in Model)
+            {}*@
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">@* @item.Departmant.University.UniversityName- @item.Departmant.DepartmantName*@ </h6>
+                <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                         aria-labelledby="dropdownMenuLink">
+
+                        <a class="dropdown-item" href="#">Şikayet Et</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                @*<div class="chart-area"><canvas id="myAreaChart"></canvas></div>*@
+                @* <a href="~/Entry/EntryReadAll/@item.EntryID/" class="btn btn-primary read-m">@item.EntryTitle</a>*@
+                Yaygın inancın tersine, Lorem Ipsum rastgele sözcüklerden oluşmaz. Kökleri M.Ö. 45 tarihinden bu yana klasik Latin edebiyatına kadar uzanan 2000 yıllık bir geçmişi vardır. Virginia'daki Hampden-Sydney College'dan Latince profesörü Richard McClintock, bir Lorem Ipsum pasajında geçen ve anlaşılması en güç sözcüklerden biri olan 'consectetur' sözcüğünün klasik edebiyattaki örneklerini incelediğinde kesin bir kaynağa ulaşmıştır. Lorm Ipsum, Çiçero tarafından M.Ö. 45 tarihinde kaleme alınan "de Finibus Bonorum et Malorum" (İyi ve Kötünün Uç Sınırları) eserinin 1.10.32 ve 1.10.33 sayılı bölümlerinden gelmektedir. Bu kitap, ahlak kuramı üzerine bir tezdir ve Rönesans döneminde çok popüler olmuştur. Lorem Ipsum pasajının ilk satırı olan "Lorem ipsum dolor sit amet" 1.10.32 sayılı bölümdeki bir satırdan gelmektedir.
+            </div>
+            <hr />
+            <div class="mb-3">
+                <div class="row container">
+                    <div class="col-7">
+                        <a href="#">
+                            <i class="far fa-calendar-alt"></i> @*@(((DateTime)item.EntryCreateDate).ToString("dd-MMM-yyyy"))*@
+                        </a><a href="#">
+                            <i class="far fa-thumbs-up pl-2"></i> 201 Likes
+                        </a><a href="#">
+                            <i class="far fa-comment pl-2"></i> 15 Comments
+                        </a>
+                    </div>
+
+                    <div class="col-5 text-right">
+                        @*@item.Users.UserID*@
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="container mt-3">
+                <div class="">
+                    <form action="" method="post">
+                        <textarea class="form-control" name="CommentTitle" placeholder="Yorumunuz..." required=""></textarea>
+                        <button type="submit" class="btn btn-success submit mt-3 mb-3 float-right">Yorum Yap..</button>
+                    </form>
+                </div>
+            </div>
+
+            @await Component.InvokeAsync("CommentListByEntry", new { id = ViewBag.i })
+
+        </div>
+
+
+    </div>
+    <!-- Pie Chart -->
+    <div class="col-xl-4 col-lg-5 ">
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Önerme</h6>
+
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div class="chart-pie pt-4 pb-2">
+                    <canvas id="myPieChart"></canvas>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
