@@ -1,4 +1,5 @@
-﻿@model IEnumerable<EntityLayer.Concrete.Entry>
+﻿@using EntityLayer.Concrete
+@model IEnumerable<EntityLayer.Concrete.Entry>
 @{
     ViewData["Title"] = "EntryReadAll";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -53,14 +54,7 @@
 
             </div>
 
-            <div class="container mt-3">
-                <div class="">
-                    <form action="" method="post">
-                        <textarea class="form-control" name="CommentTitle" placeholder="Yorumunuz..." required=""></textarea>
-                        <button type="submit" class="btn btn-success submit mt-3 mb-3 float-right">Yorum Yap..</button>
-                    </form>
-                </div>
-            </div>
+           @await Html.PartialAsync("~/Views/Comment/CommentAdd.cshtml")
 
             @await Component.InvokeAsync("CommentListByEntry", new { id = ViewBag.i })
 

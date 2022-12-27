@@ -10,5 +10,7 @@ namespace BussinesLayer.Abstract
         List<Entry> GetEntryListWithDepartmant(); //departmant göre listeleme işlemi
         List<Entry> GetEntryListByUser(int id);
 
+        List<Entry> GetEntryByID(int id);
+
     }
 }

@@ -16,6 +16,11 @@ namespace BussinesLayer.Concrete
             _entryDal = entryDal;
         }
 
+        public List<Entry> GetEntryByID(int id)
+        {
+            return  _entryDal.GetListAll(x=>x.EntryID == id);
+        }
+
         public List<Entry> GetEntryListByUser(int id)
         {
             return _entryDal.GetListWithUser(id);

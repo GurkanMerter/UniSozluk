@@ -1,0 +1,9 @@
+﻿@model IEnumerable<EntityLayer.Concrete.User>
+
+    @foreach (var item in Model)
+{
+    <div class="col-5 text-right">
+        @item.UserNickName
+    </div>
+}
+

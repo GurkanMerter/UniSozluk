@@ -18,17 +18,17 @@ namespace BussinesLayer.Concrete
 
         public List<User> GetList()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); //admin panelinde bütün yazarları listelemek için
         }
 
         public List<User> GetUserByID(int id)
         {
-            throw new NotImplementedException();
+            return _userDal.GetListAll(x=>x.UserID==id);
         }
 
         public void TAdd(User t)
         {
-            throw new NotImplementedException();
+            _userDal.Insert(t);
         }
 
         public void TDelete(User t)

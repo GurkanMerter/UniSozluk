@@ -1,0 +1,21 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Comment>
+
+<div class="comment-top">
+    <h2>Yorumlar</h2>
+    @if (Model.Count() == 0)
+    {
+        <h4>Daha önce yorum yapılmamış. İlk yorumu siz yapın...</h4>
+    }
+    else
+    {
+        @foreach (var item in Model)
+        {
+            <div class="card mb-4 py-3 border-0 border-left-danger">
+                <div class="card-body">
+                    <h5 class="mt-0"> @item.CommentUserNickName </h5>
+                    <p> @item.CommentContent </p>
+                </div>
+            </div>
+        }
+    }
+</div>

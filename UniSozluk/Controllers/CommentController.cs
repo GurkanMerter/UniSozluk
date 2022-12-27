@@ -1,6 +1,8 @@
 ﻿using BussinesLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace UniSozluk.Controllers
 {
@@ -11,10 +13,22 @@ namespace UniSozluk.Controllers
         {
             return View();
         }
-        public PartialViewResult CommentListByBlog(int id) //yorum listele
+        
+        [HttpGet]
+        public PartialViewResult CommentAdd()
         {
-            var values = cm.GetList(id);
-            return PartialView(values);
+            return PartialView();
+        }
+
+        [HttpPost]
+        public PartialViewResult CommentAdd(Comment com)
+        {
+            com.CommentDate=DateTime.Parse(DateTime.Now.ToShortDateString());
+            com.CommentStatus = true;
+            com.EntryID = 1;
+            com.CommentUserNickName = "Gus";
+            cm.TAdd(com);
+            return PartialView();
         }
     }
 }
