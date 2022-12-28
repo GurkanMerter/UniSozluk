@@ -18,8 +18,11 @@ namespace UniSozluk.Controllers
         [HttpPost]
         public IActionResult Index(User user)
         {
-            
-            return View();
+
+            user.DepartmantID = 1;
+            user.UserStatus = true;
+            um.TAdd(user);
+            return RedirectToAction("MainPage","Entry");
         
         }
 

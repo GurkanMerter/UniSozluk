@@ -28,8 +28,4 @@
     <ProjectReference Include="..\EntityLayer\EntityLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Register\" />
-  </ItemGroup>
-
 </Project>
