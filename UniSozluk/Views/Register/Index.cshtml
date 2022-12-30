@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<EntityLayer.Concrete.University>
+
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -42,6 +44,16 @@
                                     <input type="email" class="form-control form-control-user" id="exampleInputEmail" name="UserMail"
                                            placeholder="Email">
                                 </div>
+                                <div class="form-group">
+                                    <select class="form-control form-control-range " style="border-radius:30px"  id="UniversityList">
+                                    <option>Bir Üniversite Seçiniz</option>
+                                        @foreach(var item in Model)
+                                        {
+                                            <option value="@item.UniversityID">@item.UniversityName</option>
+                                        }
+                                    </select>
+                                </div>
+                                 @*Buraya Üniversite Kısmı*@
                                 <div class="form-group row">
                                     <div class="col-sm-6 mb-3 mb-sm-0">
                                         <input type="password" class="form-control form-control-user"
@@ -79,4 +91,3 @@
     </div>
 
 </body>
-
