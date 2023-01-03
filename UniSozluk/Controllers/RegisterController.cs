@@ -20,21 +20,6 @@ namespace UniSozluk.Controllers
             return View(values);
         }
 
-        public JsonResult GetDepartmant(int id)
-        {
-
-            List<SelectListItem> Departmant = unim.GetList(id).Select(n =>
-                  new SelectListItem
-                  {
-                      Value = n.UniversityID.ToString(),
-                      Text = n.UniversityName.ToString()
-                  }).ToList();
-
-            
-
-            return Json(Departmant);
-        }
-
         [HttpPost]
         public IActionResult Index(User user)
         {

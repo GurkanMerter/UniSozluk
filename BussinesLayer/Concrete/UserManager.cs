@@ -38,12 +38,13 @@ namespace BussinesLayer.Concrete
 
         public User TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _userDal.GetByID(id);
         }
 
         public void TUpdate(User t)
         {
             throw new NotImplementedException();
         }
+
     }
 }

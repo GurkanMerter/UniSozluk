@@ -9,30 +9,28 @@
         <div class="card-header">
             Entry Oluşturma
         </div>
-        <form class="container-fluid mt-2">
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Üniversite:</label>
-                <select class="form-control" disabled>
-                    <option>Default select</option>
-                </select>
+        @using (Html.BeginForm("EntryAdd", "Entry", FormMethod.Post))
+        {
+            <div class="container-fluid mt-2">
+                <div class="form-group">
+                    @Html.Label("Üniversite:")
+                    @Html.TextBoxFor(x=>x.UserID,new {@class = "form-control", @readonly="readonly"})
+                </div>
+                <div class="form-group">
+                    @Html.Label("Bölüm:")
+                    @Html.DropDownListFor(x=>x.DepartmantID,(List<SelectListItem>)ViewBag.depValue,new{@class = "form-control"})
+                </div>
+                <div class="form-group">
+                    @Html.Label("Entry İçeriği:")
+                    @Html.TextAreaFor(x=>x.EntryContent,10,3,new{@class = "form-control"})
+                    @Html.ValidationMessageFor(x=>x.EntryContent)
+                </div>
+                <button type="submit" class="btn btn-success float-right mb-3">
+                    GÖNDER
+                </button>
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Bölüm:</label>
-                <select class="form-control">
-                    <option>Default select</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="exampleFormControlInput1">Entry İçeriği:</label>
-                <textarea class="form-control"></textarea>
-            </div>
-            <a href="#" class="btn btn-success btn-icon-split mb-3 float-right">
-                <span class="icon text-white-50">
-                    <i class="fas fa-check"></i>
-                </span>
-                <span class="text">Split Button Success</span>
-            </a>
-        </form>
+        }
+
     </div>
 
 </div>

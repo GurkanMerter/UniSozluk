@@ -13,9 +13,6 @@ namespace BussinesLayer.ValidationRules
             RuleFor(x => x.EntryContent).NotEmpty().WithMessage("Entry İçereğini Boş Geçemezsiniz.");
             RuleFor(x => x.EntryContent).MaximumLength(750).WithMessage("Entry Maksimum Uzunluğu 750 karakterdir.");
             RuleFor(x => x.EntryContent).MinimumLength(5).WithMessage("Entry Minimum Uzunluğu 5 karakterdir.");
-
-
-
         }
     }
 }

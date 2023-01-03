@@ -21,14 +21,14 @@ namespace UniSozluk.Controllers
         }
 
         [HttpPost]
-        public PartialViewResult CommentAdd(Comment com)
+        public IActionResult CommentAdd(Comment com)
         {
             com.CommentDate=DateTime.Parse(DateTime.Now.ToShortDateString());
             com.CommentStatus = true;
             com.EntryID = 1;
-            com.CommentUserNickName = "Gus";
+            com.CommentUserNickName = "Mike";
             cm.TAdd(com);
-            return PartialView();
+            return RedirectToAction("Mainpage","Entry");
         }
     }
 }

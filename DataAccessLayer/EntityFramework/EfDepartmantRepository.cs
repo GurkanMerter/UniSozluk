@@ -9,5 +9,6 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfDepartmantRepository : GenericRepository<Departmant>, IDepartmantDal
     {
+        
     }
 }

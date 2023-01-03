@@ -1,4 +1,5 @@
 ﻿using BussinesLayer.Abstract;
+using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,13 @@ namespace BussinesLayer.Concrete
 {
     public class DepartmantManager : IDepartmantService
     {
+        IDepartmantDal _departmantdal;
+
+        public DepartmantManager(IDepartmantDal departmant)
+        {
+            _departmantdal = departmant;
+        }
+
         public List<Departmant> GetList(int id)
         {
             throw new NotImplementedException();
@@ -15,7 +23,7 @@ namespace BussinesLayer.Concrete
 
         public List<Departmant> GetList()
         {
-            throw new NotImplementedException();
+            return _departmantdal.GetListAll();
         }
 
         public void TAdd(Departmant t)
@@ -36,6 +44,11 @@ namespace BussinesLayer.Concrete
         public void TUpdate(Departmant t)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Departmant> GetListByUniversity(int id)
+        {
+            return _departmantdal.GetListAll(x => x.UniversityID == id);
         }
     }
 }

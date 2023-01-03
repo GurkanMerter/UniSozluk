@@ -38,7 +38,7 @@ namespace BussinesLayer.Concrete
 
         public void TAdd(Entry t)
         {
-            throw new NotImplementedException();
+            _entryDal.Insert(t);
         }
 
         public void TDelete(Entry t)
