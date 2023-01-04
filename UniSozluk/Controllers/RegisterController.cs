@@ -12,6 +12,7 @@ namespace UniSozluk.Controllers
     {
         UserManager um = new UserManager(new EfUserRepository());
         UniversityManager unim = new UniversityManager(new EfUniversityRepository()); 
+        DepartmantManager dm = new DepartmantManager(new EfDepartmantRepository());
 
         [HttpGet]
         public IActionResult Index()
@@ -19,6 +20,8 @@ namespace UniSozluk.Controllers
             var values=unim.GetList();
             return View(values);
         }
+
+        
 
         [HttpPost]
         public IActionResult Index(User user)
