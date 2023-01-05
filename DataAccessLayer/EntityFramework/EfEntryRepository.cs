@@ -22,6 +22,15 @@ namespace DataAccessLayer.EntityFramework
             }
         }
 
+        public List<Entry> GetListWithUniversityByUser(int id)
+        {
+            using (var c = new Context())
+            {
+                return c.Entries.Include(x => x.Departmant.University).Where(x=>x.UserID == id).ToList();
+
+            }
+        }
+
         public List<Entry> GetListWithUser(int id)
         {
             //throw new NotImplementedException();

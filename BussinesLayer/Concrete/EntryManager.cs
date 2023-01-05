@@ -43,7 +43,7 @@ namespace BussinesLayer.Concrete
 
         public void TDelete(Entry t)
         {
-            throw new NotImplementedException();
+            _entryDal.Delete(t);
         }
 
         public Entry TGetById(int id)
@@ -53,7 +53,12 @@ namespace BussinesLayer.Concrete
 
         public void TUpdate(Entry t)
         {
-            throw new NotImplementedException();
+            _entryDal.Update(t);
+        }
+
+        public List<Entry> GetListWithUniversityByUser(int id)
+        {
+            return _entryDal.GetListWithUniversityByUser(id);
         }
     }
 }
