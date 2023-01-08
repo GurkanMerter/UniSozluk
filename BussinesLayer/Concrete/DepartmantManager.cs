@@ -18,7 +18,7 @@ namespace BussinesLayer.Concrete
 
         public List<Departmant> GetList(int id)
         {
-            throw new NotImplementedException();
+            return _departmantdal.GetListAll();
         }
 
         public List<Departmant> GetList()
@@ -28,12 +28,12 @@ namespace BussinesLayer.Concrete
 
         public void TAdd(Departmant t)
         {
-            throw new NotImplementedException();
+             _departmantdal.Insert(t);
         }
 
         public void TDelete(Departmant t)
         {
-            throw new NotImplementedException();
+            _departmantdal.Delete(t);
         }
 
         public Departmant TGetById(int id)
@@ -43,7 +43,7 @@ namespace BussinesLayer.Concrete
 
         public void TUpdate(Departmant t)
         {
-            throw new NotImplementedException();
+            _departmantdal.Update(t);
         }
 
         public List<Departmant> GetListByUniversity(int id)

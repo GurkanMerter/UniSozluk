@@ -23,17 +23,28 @@ namespace UniSozluk.Controllers
             return View(values);
         }
 
-        
 
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult Index(User user)
         {
-
-            user.DepartmantID = 1;
             user.UserStatus = true;
             um.TAdd(user);
             return RedirectToAction("MainPage","Entry");
         
+        }
+
+        [AllowAnonymous]
+        public JsonResult GetDepartmantList(int id)
+        {
+            List<SelectListItem> Departmant = dm.GetListByUniversity(id).OrderBy(x=>x.DepartmantName).Select(x =>
+            new SelectListItem
+            {
+                Value = x.DepartmantID.ToString(),
+                Text = x.DepartmantName.ToString()
+            }).ToList();
+
+            return Json(Departmant);
         }
 
 
