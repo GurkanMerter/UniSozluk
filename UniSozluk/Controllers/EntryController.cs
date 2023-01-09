@@ -71,17 +71,12 @@ namespace UniSozluk.Controllers
             return RedirectToAction("EntryListAll");
         } 
         
-        
-
-
         public IActionResult EntryReadAll(int id)
         {
             ViewBag.i = id; //gönderdiğimiz id'yi yazdırmak için;
             var values = em.GetEntryByID(id);
             return View(values);
         }
-
-
 
         [HttpGet]
         public IActionResult EntryAdd()

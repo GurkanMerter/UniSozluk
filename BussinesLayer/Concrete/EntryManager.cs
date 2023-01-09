@@ -60,5 +60,10 @@ namespace BussinesLayer.Concrete
         {
             return _entryDal.GetListWithUniversityByUser(id);
         }
+
+        public List<Entry> GetListWithDepartmantsByUniversity(int id)
+        {
+            return _entryDal.GetListWithDepartmantsByUniversity(id);
+        }
     }
 }

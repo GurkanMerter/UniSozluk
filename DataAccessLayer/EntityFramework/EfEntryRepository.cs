@@ -12,6 +12,14 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfEntryRepository : GenericRepository<Entry>, IEntryDal
     {
+        public List<Entry> GetListWithDepartmantsByUniversity(int id)
+        {
+            using (var c = new Context())
+            {
+                return c.Entries.Include(x => x.Departmant).Where(x => x.Departmant.UniversityID.Equals(id)).ToList();
+            }
+        }
+
         public List<Entry> GetListWithUniversity()
         {
             //throw new NotImplementedException(); -> implement interface ile

@@ -15,6 +15,7 @@ namespace EntityLayer.Concrete
         public bool CommentStatus { get; set; }
         public int? EntryID { get; set; }
         public Entry Entry { get; set; }
+        public int EntryScore { get; set; }
 
     }
 }
