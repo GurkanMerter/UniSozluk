@@ -12,13 +12,19 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfUserRepository : GenericRepository<User>, IUserDal
     {
-        public List<User> GetListWithUniversity()
+        public User GetListWithUniversity(int id)
         {
-            //throw new NotImplementedException(); -> implement interface ile
             using (var c = new Context())
             {
-                //return c.Users.Include(x => x.Departmant.DepartmantID).ToList();
-                return null;
+                return c.Users.Include(x => x.Departmant.University).Where(x=>x.UserID==id).FirstOrDefault();
+            }
+        }
+
+        public User GetUserWithDepartmantAndUniversity(int id)
+        {
+            using (var c = new Context())
+            {
+                return c.Users.Include(x => x.Departmant).Include(x=>x.Departmant.University).Where(x => x.UserID == id).FirstOrDefault();
             }
         }
     }

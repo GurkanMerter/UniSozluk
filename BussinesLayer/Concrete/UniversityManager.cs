@@ -26,6 +26,11 @@ namespace BussinesLayer.Concrete
             return _universitydal.GetListAll(x=>x.UniversityID == id);
         }
 
+        //public List<University> GetUniversityByUser(User user)
+        //{
+        //    return  _universitydal.GetUniversityByUser(user);
+        //}
+
         public void TAdd(University t)
         {
             throw new NotImplementedException();

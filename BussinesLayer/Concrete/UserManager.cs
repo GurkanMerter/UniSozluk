@@ -21,9 +21,19 @@ namespace BussinesLayer.Concrete
             throw new NotImplementedException(); //admin panelinde bütün yazarları listelemek için
         }
 
+        public User GetListWithUniversity(int id)
+        {
+            return _userDal.GetListWithUniversity(id);
+        }
+
         public List<User> GetUserByID(int id)
         {
             return _userDal.GetListAll(x=>x.UserID==id);
+        }
+
+        public User GetUserWithDepartmantAndUniversity(int id)
+        {
+            return _userDal.GetUserWithDepartmantAndUniversity(id);
         }
 
         public void TAdd(User t)

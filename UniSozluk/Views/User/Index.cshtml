@@ -1,0 +1,57 @@
+﻿@using EntityLayer.Concrete
+@model User
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container ">
+    <div class="row">
+        <div class="card mb-4 bg-gradient-success col-6">
+            <div class="card-body text-white">
+                @ViewBag.universityEntryCount
+            </div>
+        </div><div class="card mb-4 bg-gradient-success col-6 ">
+            <div class="card-body text-white">
+                @ViewBag.userEntryCount
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card mb-4 bg-gradient-success col-6">
+            <div class="card-body text-white">
+                @Model.UserFirstName @Model.UserLastName
+            </div>
+        </div><div class="card mb-4 bg-gradient-success col-6 ">
+            <div class="card-body text-white">
+                @Model.UserNickName
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card mb-4 bg-gradient-success col-6">
+            <div class="card-body text-white">
+                @Model.UserTelNo
+            </div>
+        </div><div class="card mb-4 bg-gradient-success col-6 ">
+            <div class="card-body text-white">
+                @Model.UserMail
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card mb-4 bg-gradient-success col-6">
+            <div class="card-body text-white">
+                @Model.Departmant.DepartmantName
+            </div>
+        </div>
+        <div class="card mb-4 bg-gradient-success col-6 ">
+            <div class="card-body text-white">
+                @Model.Departmant.University.UniversityName
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

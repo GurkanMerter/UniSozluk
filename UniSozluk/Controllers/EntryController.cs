@@ -81,8 +81,14 @@ namespace UniSozluk.Controllers
         [HttpGet]
         public IActionResult EntryAdd()
         {
-            
-            List<SelectListItem> depValue = ((List<SelectListItem>)(from x in dm.GetListByUniversity(1) select new SelectListItem
+            //var user = usm.TGetById(1);
+            //var university = um.GetUniversityByUser(user);
+            //ViewBag.u = university;
+
+            var user = usm.GetListWithUniversity(1);
+            ViewBag.university = user.Departmant.University.UniversityName.ToString();
+
+            List<SelectListItem> depValue = ((List<SelectListItem>)(from x in dm.GetListByUniversity(user.Departmant.University.UniversityID) select new SelectListItem
             {
                 Text=x.DepartmantName,
                 Value=x.DepartmantID.ToString(),

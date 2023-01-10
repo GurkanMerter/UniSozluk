@@ -7,6 +7,8 @@ namespace DataAccessLayer.Abstract
 {
     public interface IUniversityDal : IGenericDal<University>
     {
-       // List<University> GetListWithUniversity();
+        // List<University> GetListWithUniversity();
+
+        //List<University> GetUniversityByUser(User user);
     }
 }
