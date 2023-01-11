@@ -1,0 +1,78 @@
+﻿@using EntityLayer.Concrete
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<User>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>Üniversite Listesi</h5>
+
+                </div>
+                <div class="ibox-content">
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered table-hover dataTables-example">
+                            <thead>
+                                <tr>
+                                    <th>UserID</th>
+                                    <th>Adı</th>
+                                    <th>Soy Adı</th>
+                                    <th>Nickname</th>
+                                    <th>Mail</th>
+                                    <th>Tel no</th>
+                                    <th>Statü</th>
+                                    <th>DepartmanID</th>
+                                    <th>Entry Sayısı</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+                                    <tr class="gradeX">
+                                        <td>@item.UserID</td>
+                                        <td>@item.UserFirstName</td>
+                                        <td>@item.UserLastName</td>
+                                        <td>@item.UserNickName</td>
+                                        <td>@item.UserMail</td>
+                                        <td>@item.UserTelNo</td>
+                                        <td>@item.UserStatus</td>
+                                        <td class="center">@item.DepartmantID</td>
+                                        <td class="center">X</td>
+
+                                    </tr>
+
+
+                                }
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>UserID</th>
+                                    <th>Adı</th>
+                                    <th>Soy Adı</th>
+                                    <th>Nickname</th>
+                                    <th>Mail</th>
+                                    <th>Tel no</th>
+                                    <th>Statü</th>
+                                    <th>DepartmanID</th>
+                                    <th>Entry Sayısı</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        <br />
+                        @Html.PagedListPager((IPagedList)Model,page => Url.Action("Index",new {page}) )
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

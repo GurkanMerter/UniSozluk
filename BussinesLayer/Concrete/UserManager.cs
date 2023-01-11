@@ -18,7 +18,7 @@ namespace BussinesLayer.Concrete
 
         public List<User> GetList()
         {
-            throw new NotImplementedException(); //admin panelinde bütün yazarları listelemek için
+            return _userDal.GetListAll(); //admin panelinde bütün yazarları listelemek için
         }
 
         public User GetListWithUniversity(int id)
