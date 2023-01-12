@@ -7,6 +7,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
         <div class="col-lg-12">
@@ -25,6 +26,8 @@
                                     <th>Üniversite Adı</th>
                                     <th>Üniversite Statü</th>
                                     <th>Bölüm Sayısı</th>
+                                    <th>Düzenle</th>
+                                    <th>Sil</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -35,7 +38,9 @@
                                     <td>@item.UniversityID</td>
                                     <td>@item.UniversityName</td>
                                     <td class="center">@item.UniversityStatus</td>
-                                    <td class="center">X</td>
+                                    <td class="center">@item.Departmants.Count()</td>
+                                    <td class="center"><i class="fa fa-edit"></i></td>
+                                    <td class="center"><i class="fa fa-trash"></i></td>
                                 </tr>
                                 
                             
@@ -47,6 +52,8 @@
                                     <th>Üniversite Adı</th>
                                     <th>Üniversite Statü</th>
                                     <th>Bölüm Sayısı</th>
+                                    <th>Düzenle</th>
+                                    <th>Sil</th>
                                 </tr>
                             </tfoot>
                         </table>

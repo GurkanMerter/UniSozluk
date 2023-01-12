@@ -12,6 +12,16 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfEntryRepository : GenericRepository<Entry>, IEntryDal
     {
+        public List<Entry> GetListWithDepartmantOrderByComment()
+        {
+            using (var c = new Context())
+            {
+                return c.Entries.Include(x=>x.Departmant.University).OrderBy(x=>x.Comments.Count()).ToList();
+            }
+        }
+        
+       
+
         public List<Entry> GetListWithDepartmantsByUniversity(int id)
         {
             using (var c = new Context())
@@ -22,7 +32,7 @@ namespace DataAccessLayer.EntityFramework
 
         public List<Entry> GetListWithUniversity()
         {
-            //throw new NotImplementedException(); -> implement interface ile
+            
             using (var c = new Context())
             {
                 return c.Entries.Include(x => x.Departmant.University).ToList();
@@ -46,6 +56,15 @@ namespace DataAccessLayer.EntityFramework
             {
                 return c.Entries.Include(x => x.Users).Where(x=> x.Users.UserID == id).ToList();
                
+            }
+        }
+
+        public List<Entry> GetListWithUser()
+        {
+            using (var c = new Context())
+            {
+                return c.Entries.Include(x => x.Users).ToList();
+
             }
         }
     }

@@ -14,7 +14,10 @@ namespace DataAccessLayer.Abstract
     {
         List<Entry> GetListWithUniversity();
         List<Entry> GetListWithUser(int id);
+        List<Entry> GetListWithUser();
         List<Entry> GetListWithUniversityByUser(int id);
         List<Entry> GetListWithDepartmantsByUniversity(int id);
+        List<Entry> GetListWithDepartmantOrderByComment();
+        //List<Entry> GetListWithDepartmantOrderByLike();
     }
 }

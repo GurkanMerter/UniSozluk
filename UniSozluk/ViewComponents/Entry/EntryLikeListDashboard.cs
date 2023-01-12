@@ -1,19 +1,15 @@
 ﻿using BussinesLayer.Concrete;
 using DataAccessLayer.EntityFramework;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace UniSozluk.Areas.Admin.Controllers
+namespace UniSozluk.ViewComponents.Entry
 {
-    [AllowAnonymous]
-    [Area("Admin")]
-    public class EntryController : Controller
+    public class EntryLikeListDashboard:ViewComponent
     {
         EntryManager em = new EntryManager(new EfEntryRepository());
-        public IActionResult Index()
+        public IViewComponentResult Invoke()
         {
             var values = em.GetEntryListWithDepartmant();
-
             return View(values);
         }
     }

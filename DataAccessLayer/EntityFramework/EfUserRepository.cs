@@ -20,6 +20,14 @@ namespace DataAccessLayer.EntityFramework
             }
         }
 
+        public List<User> GetUsersWithDepartmantAndEntries()
+        {
+            using (var c = new Context())
+            {
+                return c.Users.Include(x => x.Departmant).Include(x=>x.Entrys).ToList();
+            }
+        }
+
         public User GetUserWithDepartmantAndUniversity(int id)
         {
             using (var c = new Context())

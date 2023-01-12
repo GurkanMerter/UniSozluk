@@ -13,7 +13,7 @@ namespace UniSozluk.Areas.Admin.Controllers
         UserManager usm = new UserManager(new EfUserRepository());
         public IActionResult Index(int page = 1)
         {
-            var values = usm.GetList().ToPagedList(page, 25);
+            var values = usm.GetUsersWithDepartmantAndEntries().ToPagedList(page, 25);
             return View(values);
         }
     }

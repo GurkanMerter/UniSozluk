@@ -14,7 +14,7 @@ namespace UniSozluk.Areas.Admin.Controllers
         public IActionResult Index(int page=1)
         {
             
-            var values = um.GetList().ToPagedList(page,25);
+            var values = um.GetUniversitiesWithDepartmants().ToPagedList(page,25);
             return View(values);
         }
     }

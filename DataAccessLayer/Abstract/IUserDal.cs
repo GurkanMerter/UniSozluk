@@ -9,6 +9,7 @@ namespace DataAccessLayer.Abstract
     {
         User GetListWithUniversity(int id);
         User GetUserWithDepartmantAndUniversity(int id);
+        List<User> GetUsersWithDepartmantAndEntries();
 
     }
 }

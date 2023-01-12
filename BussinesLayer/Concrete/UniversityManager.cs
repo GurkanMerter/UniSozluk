@@ -26,6 +26,11 @@ namespace BussinesLayer.Concrete
             return _universitydal.GetListAll(x=>x.UniversityID == id);
         }
 
+        public List<University> GetUniversitiesWithDepartmants()
+        {
+            return _universitydal.GetUniversitiesWithDepartmants();
+        }
+
         //public List<University> GetUniversityByUser(User user)
         //{
         //    return  _universitydal.GetUniversityByUser(user);

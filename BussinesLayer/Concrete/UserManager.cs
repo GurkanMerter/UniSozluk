@@ -31,6 +31,11 @@ namespace BussinesLayer.Concrete
             return _userDal.GetListAll(x=>x.UserID==id);
         }
 
+        public List<User> GetUsersWithDepartmantAndEntries()
+        {
+            return _userDal.GetUsersWithDepartmantAndEntries();
+        }
+
         public User GetUserWithDepartmantAndUniversity(int id)
         {
             return _userDal.GetUserWithDepartmantAndUniversity(id);

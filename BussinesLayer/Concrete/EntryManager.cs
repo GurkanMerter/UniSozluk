@@ -3,6 +3,7 @@ using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BussinesLayer.Concrete
@@ -64,6 +65,16 @@ namespace BussinesLayer.Concrete
         public List<Entry> GetListWithDepartmantsByUniversity(int id)
         {
             return _entryDal.GetListWithDepartmantsByUniversity(id);
+        }
+
+        public List<Entry> GetListWithUser()
+        {
+            return _entryDal.GetListWithUser();
+        }
+
+        public List<Entry> Get5WithDepartmantOrderByComment()
+        {
+            return _entryDal.GetListWithDepartmantOrderByComment().Take(5).ToList();
         }
     }
 }

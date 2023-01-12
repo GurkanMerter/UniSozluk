@@ -1,0 +1,76 @@
+﻿@using EntityLayer.Concrete
+@model List<Entry>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="widget style1 yellow-bg">
+                <div class="row">
+                    <div class="col-4">
+                        <i class="fa fa-music fa-5x"></i>
+                    </div>
+                    <div class="col-8 text-right">
+                        <span> Toplam Entry Sayısı</span>
+                        <h2 class="font-bold">@ViewBag.entryCount </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="widget style1 yellow-bg">
+                <div class="row">
+                    <div class="col-4">
+                        <i class="fa fa-music fa-5x"></i>
+                    </div>
+                    <div class="col-8 text-right">
+                        <span> Toplam Üye Sayısı </span>
+                        <h2 class="font-bold">@ViewBag.userCount</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="widget style1 yellow-bg">
+                <div class="row">
+                    <div class="col-4">
+                        <i class="fa fa-music fa-5x"></i>
+                    </div>
+                    <div class="col-8 text-right">
+                        <span> Üniversite Sayısı </span>
+                        <h2 class="font-bold">@ViewBag.universityCount</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 inherit:parent">
+            <div class="widget style1 yellow-bg">
+                <div class="row">
+                    <div class="col-4">
+                        <i class="fa fa-music fa-5x"></i>
+                    </div>
+                    <div class="col-8 text-right">
+                        <span>Bölüm Sayısı</span>
+                        <br />
+                        <br />
+                        <h2 class="font-bold">@ViewBag.departmantCount</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6"> 
+        <h3 class="align-text-center"> En Çok Beğeni Alan 5 Entry </h3>
+        @await Component.InvokeAsync("EntryLikeListDashboard")
+    </div>
+    <div class="col-6">
+        <h3 class="align-text-center"> En Çok Yorum Alan 5 Entry </h3>
+        @await Component.InvokeAsync("EntryCommentListDashboard")
+    </div>
+</div>

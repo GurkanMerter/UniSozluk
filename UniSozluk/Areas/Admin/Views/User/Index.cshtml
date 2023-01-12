@@ -30,6 +30,8 @@
                                     <th>Statü</th>
                                     <th>DepartmanID</th>
                                     <th>Entry Sayısı</th>
+                                    <th>Düzenle</th>
+                                    <th>Sil</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,9 +46,10 @@
                                         <td>@item.UserMail</td>
                                         <td>@item.UserTelNo</td>
                                         <td>@item.UserStatus</td>
-                                        <td class="center">@item.DepartmantID</td>
-                                        <td class="center">X</td>
-
+                                        <td class="center">@item.Departmant.DepartmantName</td>
+                                        <td class="center">@item.Entrys.Count()</td>
+                                        <td class="center"><i class="fa fa-edit"></i></td>
+                                        <td class="center"><i class="fa fa-trash"></i></td>
                                     </tr>
 
 
@@ -63,6 +66,8 @@
                                     <th>Statü</th>
                                     <th>DepartmanID</th>
                                     <th>Entry Sayısı</th>
+                                    <th>Düzenle</th>
+                                    <th>Sil</th>
                                 </tr>
                             </tfoot>
                         </table>

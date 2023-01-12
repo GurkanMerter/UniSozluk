@@ -27,5 +27,12 @@ namespace DataAccessLayer.EntityFramework
         //       return c.Universities.Where(x=>x.UniversityID==user.Departmant.UniversityID).ToList();
         //    }
         //}
+        public List<University> GetUniversitiesWithDepartmants()
+        {
+            using (var c = new Context())
+            {
+                return c.Universities.Include(x=>x.Departmants).ToList();
+            }
+        }
     }
 }
