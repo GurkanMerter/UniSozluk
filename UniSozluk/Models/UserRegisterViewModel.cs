@@ -2,7 +2,7 @@
 
 namespace UniSozluk.Models
 {
-    public class UserSignUpModel
+    public class UserRegisterViewModel
     {
         [Display(Name = "Ad")]
         [Required(ErrorMessage ="Ad Giriniz...")]
@@ -28,12 +28,12 @@ namespace UniSozluk.Models
         [Required(ErrorMessage = "Kullanıcı Adı Giriniz...")]
         public string UserName { get; set; }
 
-        [Display(Name = "Üniversite")]
-        [Required(ErrorMessage = "Üniversitenizi Seçiniz...")]
-        public string University { get; set; }
+        //[Display(Name = "Üniversite")]
+        //[Required(ErrorMessage = "Üniversitenizi Seçiniz...")]
+        //public string University { get; set; }
 
-        [Display(Name = "Bölüm")]
-        [Required(ErrorMessage = "Bölümünüzü Seçiniz...")]
-        public string Departmant { get; set; }
+        //[Display(Name = "Bölüm")]
+        //[Required(ErrorMessage = "Bölümünüzü Seçiniz...")]
+        //public string Departmant { get; set; }
     }
 }

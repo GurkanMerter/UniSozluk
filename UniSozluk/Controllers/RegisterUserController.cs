@@ -13,12 +13,10 @@ namespace UniSozluk.Controllers
     public class RegisterUserController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly UnitOfWork _unitOfWork;
 
-        public RegisterUserController(UserManager<AppUser> userManager, UnitOfWork unitOfWork )
+        public RegisterUserController(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
-            _unitOfWork = unitOfWork;
         }
 
         [HttpGet]
@@ -28,7 +26,7 @@ namespace UniSozluk.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(UserSignUpModel u)
+        public async Task<IActionResult> Index(UserRegisterViewModel u)
         {
             if(ModelState.IsValid)
             {
@@ -40,7 +38,7 @@ namespace UniSozluk.Controllers
                     Surname = u.Surname,
                 };
                 var result = await _userManager.CreateAsync(user,u.Password);
-                await _unitOfWork.CommitAsync();
+
 
                 if(result.Succeeded)
                 {
