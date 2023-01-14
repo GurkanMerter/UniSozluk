@@ -21,7 +21,12 @@ namespace DataAccessLayer.Abstract
         Entry GetEntryWithUniversityByID(int id);
         List<Entry> GetListWithDepartmantByUserID(int id);
         Entry GetEntryWithUserByID(int id);
-        
+
         //List<Entry> GetListWithDepartmantOrderByLike();
+
+        /*aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
+        Entry GetEntryWithUniversityandUserAndDepartmantByID(int id);
+
+
     }
 }

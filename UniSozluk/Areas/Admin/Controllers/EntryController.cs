@@ -15,6 +15,7 @@ namespace UniSozluk.Areas.Admin.Controllers
     public class EntryController : Controller
     {
         EntryManager em = new EntryManager(new EfEntryRepository());
+        DepartmantManager dm = new DepartmantManager(new EfDepartmantRepository());
         public IActionResult Index()
         {
             var values = em.GetEntryListWithDepartmant();
@@ -25,10 +26,12 @@ namespace UniSozluk.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult EntryEdit(int id)
         {
-            List<SelectListItem> DepartmantValue = (from x in em.GetListWithDepartmantByUserID(id)
+            var entry = em.GetEntryWithUniversityandUserAndDepartmantByID(id);
+
+            List<SelectListItem> DepartmantValue = (from x in dm.GetListByUniversityID(entry.Departmant.University.UniversityID)
                                                     select new SelectListItem
                                                     {
-                                                        Text = x.Departmant.DepartmantName,
+                                                        Text = x.DepartmantName,
                                                         Value = x.DepartmantID.ToString()
                                                     }
                                                     ).ToList();

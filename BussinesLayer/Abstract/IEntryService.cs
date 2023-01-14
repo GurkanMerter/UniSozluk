@@ -16,5 +16,8 @@ namespace BussinesLayer.Abstract
         Entry GetEntryWithUniversityByID(int id);
         List<Entry> GetListWithDepartmantByUserID(int id);
         Entry GetEntryWithUserByID(int id);
+
+        /*aaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
+        Entry GetEntryWithUniversityandUserAndDepartmantByID(int id);
     }
 }

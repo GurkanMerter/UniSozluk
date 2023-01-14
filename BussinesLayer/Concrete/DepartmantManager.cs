@@ -50,5 +50,10 @@ namespace BussinesLayer.Concrete
         {
             return _departmantdal.GetListAll(x => x.UniversityID == id);
         }
+
+        public List<Departmant> GetListByUniversityID(int id)
+        {
+            return _departmantdal.GetListByUniversityID(id);
+        }
     }
 }

@@ -26,10 +26,13 @@ namespace UniSozluk.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult UserEdit(int id)
         {
-            List<SelectListItem> DepartmantValue = (from x in usm.GetUsersWithDepartmantAndEntries()
+            var user = usm.GetUserWithUniversityByID(id);
+            
+
+            List<SelectListItem> DepartmantValue = (from x in dm.GetListByUniversityID((int)user.Departmant.UniversityID)
                                                     select new SelectListItem
                                                     {
-                                                        Text = x.Departmant.DepartmantName,
+                                                        Text = x.DepartmantName,
                                                         Value = x.DepartmantID.ToString()
                                                     }
                                                     ).ToList();
@@ -41,21 +44,21 @@ namespace UniSozluk.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult UserEdit(User user)//userin tüm entryleri
+        public IActionResult UserEdit(User user)
         {
             
-            user.UserStatus = true;
-            user.UserID = 1;
+            
+            
             usm.TUpdate(user);
 
             return RedirectToAction("Index");
         }
 
-        public IActionResult EntryDelete(int id)//userin tüm entryleri
+        public IActionResult UserDelete(int id)
         {
             var value = usm.TGetById(id);
             usm.TDelete(value);
-            return RedirectToAction("EntryListAll");
+            return RedirectToAction("Index");
         }
     }
 }

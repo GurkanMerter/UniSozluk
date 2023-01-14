@@ -12,6 +12,12 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfDepartmantRepository : GenericRepository<Departmant>, IDepartmantDal
     {
-       
+        public List<Departmant> GetListByUniversityID(int id)
+        {
+            using(var c = new Context())
+            {
+                return c.Departmants.Where(x=>x.UniversityID == id).ToList();
+            }
+        }
     }
 }

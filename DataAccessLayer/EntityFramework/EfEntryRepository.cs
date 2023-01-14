@@ -12,6 +12,16 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfEntryRepository : GenericRepository<Entry>, IEntryDal
     {
+        public Entry GetEntryWithUniversityandUserAndDepartmantByID(int id)
+        {
+            
+                using (var c = new Context())
+                {
+                    return c.Entries.Include(x => x.Departmant.University).Include(x=>x.Departmant).Include(x=>x.Users).Where(x => x.EntryID == id).FirstOrDefault();
+                }
+            
+        }
+
         public Entry GetEntryWithUniversityByID(int id)
         {
             using (var c = new Context())

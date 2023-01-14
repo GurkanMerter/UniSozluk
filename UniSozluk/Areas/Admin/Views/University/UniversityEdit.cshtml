@@ -1,0 +1,22 @@
+﻿@model EntityLayer.Concrete.University
+@{
+    ViewData["Title"] = "UniversityEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("UserEdit", "User", FormMethod.Post))
+{
+    <div class="form-group">
+        <div class="form-group">
+            @Html.TextBoxFor(x=>x.UniversityID,new{@class="form-control", @hidden="true"})
+        </div>
+        @Html.Label("Üye ismi:")
+        @Html.TextBoxFor(x=>x.UniversityName,new {@class = "form-control"})
+    </div>
+    <div class="form-group">
+        @Html.Label("Üye soy ismi:")
+        @Html.TextBoxFor(x=>x.UniversityStatus,new {@class = "form-control"})
+    </div>
+
+}
+

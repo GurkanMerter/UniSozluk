@@ -17,6 +17,10 @@
                     @Html.TextBoxFor(x=>x.EntryID,new{@class="form-control", @hidden="true"})
                 </div>
                 <div class="form-group">
+                    @Html.Label("UserID:")
+                    @Html.TextBoxFor(x=>x.UserID,new {@class = "form-control"})
+                </div>
+                <div class="form-group">
                     @Html.Label("Üniversite:")
                     @Html.TextBoxFor(x=>x.Departmant.University.UniversityName,new {@class = "form-control", @readonly="readonly"})
                 </div>
@@ -28,6 +32,10 @@
                     @Html.Label("Entry İçeriği:")
                     @Html.TextAreaFor(x=>x.EntryContent,10,3,new{@class = "form-control"})
                     @Html.ValidationMessageFor(x=>x.EntryContent)
+                </div>
+                <div class="form-group">
+                    @Html.Label("Entry Status:")
+                    @Html.TextBoxFor(x=>x.EntryStatus,new {@class = "form-control"})
                 </div>
                 <button type="submit" class="btn btn-success float-right mb-3">
                     Güncelle

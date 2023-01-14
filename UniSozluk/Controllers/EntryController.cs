@@ -46,13 +46,12 @@ namespace UniSozluk.Controllers
         [HttpGet]
         public IActionResult EntryEdit(int id)//userin tüm entryleri
         {
-            var entry = em.GetEntryWithUserByID(id);
-            
-            
-            List<SelectListItem> DepartmantValue = (from x in em.GetListWithDepartmantByUserID(entry.Users.UserID)
+            var entry = em.GetEntryWithUniversityandUserAndDepartmantByID(id);
+
+            List<SelectListItem> DepartmantValue = (from x in dm.GetListByUniversityID(entry.Departmant.University.UniversityID)
                                                     select new SelectListItem
                                                     {
-                                                        Text = x.Departmant.DepartmantName,
+                                                        Text = x.DepartmantName,
                                                         Value = x.DepartmantID.ToString()
                                                     }
                                                     ).ToList();
@@ -67,8 +66,6 @@ namespace UniSozluk.Controllers
         public IActionResult EntryEdit(Entry entry)//userin tüm entryleri
         {
             entry.EntryCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            entry.EntryStatus = true;
-            entry.UserID = 1;
             em.TUpdate(entry);
 
             return RedirectToAction("EntryListAll");

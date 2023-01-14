@@ -7,6 +7,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IDepartmantDal : IGenericDal<Departmant>
     {
-        
+        List<Departmant> GetListByUniversityID(int id);
     }
 }

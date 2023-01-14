@@ -8,6 +8,7 @@ namespace BussinesLayer.Abstract
     public interface IDepartmantService:IGenericService<Departmant>
     {
         List<Departmant> GetList(int id);
+        List<Departmant> GetListByUniversityID(int id);
 
     }
 }
