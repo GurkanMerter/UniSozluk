@@ -15,13 +15,13 @@ namespace UniSozluk.Controllers
     [AllowAnonymous]
     public class EntryController : Controller
     {
-        
+
         EntryManager em = new EntryManager(new EfEntryRepository());
         UniversityManager um = new UniversityManager(new EfUniversityRepository());
         DepartmantManager dm = new DepartmantManager(new EfDepartmantRepository());
         UserManager usm = new UserManager(new EfUserRepository());
 
-        
+
         public IActionResult MainPage()
         {
             var values = em.GetEntryListWithDepartmant();
@@ -32,21 +32,24 @@ namespace UniSozluk.Controllers
         {
             var values = em.GetListWithUniversityByUser(1);
             return View(values);
-        } 
-        
+        }
+
 
         public IActionResult EntryDelete(int id)//userin tüm entryleri
         {
             var value = em.TGetById(id);
             em.TDelete(value);
             return RedirectToAction("EntryListAll");
-        } 
-        
+        }
+
 
         [HttpGet]
         public IActionResult EntryEdit(int id)//userin tüm entryleri
         {
-            List<SelectListItem> DepartmantValue = (from x in em.GetEntryListWithDepartmant()
+            var entry = em.GetEntryWithUserByID(id);
+            
+            
+            List<SelectListItem> DepartmantValue = (from x in em.GetListWithDepartmantByUserID(entry.Users.UserID)
                                                     select new SelectListItem
                                                     {
                                                         Text = x.Departmant.DepartmantName,
@@ -55,22 +58,22 @@ namespace UniSozluk.Controllers
                                                     ).ToList();
             ViewBag.depValue = DepartmantValue;
 
-            var value = em.TGetById(id);
+            var value = em.GetEntryWithUniversityByID(id);
 
             return View(value);
-        } 
+        }
 
         [HttpPost]
         public IActionResult EntryEdit(Entry entry)//userin tüm entryleri
         {
             entry.EntryCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-            entry.EntryStatus = true ;
+            entry.EntryStatus = true;
             entry.UserID = 1;
             em.TUpdate(entry);
-            
+
             return RedirectToAction("EntryListAll");
-        } 
-        
+        }
+
         public IActionResult EntryReadAll(int id)
         {
             ViewBag.i = id; //gönderdiğimiz id'yi yazdırmak için;
@@ -85,21 +88,32 @@ namespace UniSozluk.Controllers
             //var university = um.GetUniversityByUser(user);
             //ViewBag.u = university;
 
-            var user = usm.GetListWithUniversity(1);
+            var user = usm.GetUserWithUniversityByID(1);
             ViewBag.university = user.Departmant.University.UniversityName.ToString();
 
-            List<SelectListItem> depValue = ((List<SelectListItem>)(from x in dm.GetListByUniversity(user.Departmant.University.UniversityID) select new SelectListItem
-            {
-                Text=x.DepartmantName,
-                Value=x.DepartmantID.ToString(),
-                
-            }).ToList());
+
+            List<SelectListItem> depValue = ((List<SelectListItem>)(from x in dm.GetListByUniversity(user.Departmant.University.UniversityID)
+                                                                    select new SelectListItem
+                                                                    {
+                                                                        Text = x.DepartmantName,
+                                                                        Value = x.DepartmantID.ToString(),
+
+                                                                    }).ToList());
             ViewBag.depValue = depValue;
 
-            
+            List<SelectListItem> depValue2 = ((List<SelectListItem>)(from x in usm.GetUserListWithUniversityByID(1)
+                                                                     select new SelectListItem
+                                                                     {
+                                                                         Text = x.Departmant.University.UniversityName,
+                                                                         Value = x.DepartmantID.ToString(),
+
+                                                                     }).ToList());
+
+            ViewBag.depValue2= depValue2;
+
             return View();
         }
-        
+
         [HttpPost]
         public IActionResult EntryAdd(Entry e)
         {
@@ -109,7 +123,7 @@ namespace UniSozluk.Controllers
             if (result.IsValid)
             {
                 e.EntryStatus = true;
-                e.EntryCreateDate= DateTime.Parse(DateTime.Now.ToShortDateString());
+                e.EntryCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                 e.UserID = 1;
                 em.TAdd(e);
                 return RedirectToAction("EntryListAll", "Entry");

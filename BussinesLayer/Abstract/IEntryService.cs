@@ -13,6 +13,8 @@ namespace BussinesLayer.Abstract
         List<Entry> GetListWithDepartmantsByUniversity(int id);
         List<Entry> GetListWithUser();
         List<Entry> Get5WithDepartmantOrderByComment();
-
+        Entry GetEntryWithUniversityByID(int id);
+        List<Entry> GetListWithDepartmantByUserID(int id);
+        Entry GetEntryWithUserByID(int id);
     }
 }

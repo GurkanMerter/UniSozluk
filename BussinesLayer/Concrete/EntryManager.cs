@@ -76,5 +76,20 @@ namespace BussinesLayer.Concrete
         {
             return _entryDal.GetListWithDepartmantOrderByComment().Take(5).ToList();
         }
+
+        public Entry GetEntryWithUniversityByID(int id)
+        {
+            return _entryDal.GetEntryWithUniversityByID(id);
+        }
+
+        public List<Entry> GetListWithDepartmantByUserID(int id)
+        {
+            return _entryDal.GetListWithDepartmantByUserID(id);
+        }
+
+        public Entry GetEntryWithUserByID(int id)
+        {
+            return _entryDal.GetEntryWithUserByID(id);
+        }
     }
 }

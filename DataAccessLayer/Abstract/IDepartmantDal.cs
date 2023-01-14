@@ -7,5 +7,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IDepartmantDal : IGenericDal<Departmant>
     {
+        
     }
 }

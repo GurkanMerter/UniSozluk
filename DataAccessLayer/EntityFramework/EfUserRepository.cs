@@ -12,7 +12,7 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfUserRepository : GenericRepository<User>, IUserDal
     {
-        public User GetListWithUniversity(int id)
+        public User GetUserWithUniversityByID(int id)
         {
             using (var c = new Context())
             {
@@ -24,7 +24,7 @@ namespace DataAccessLayer.EntityFramework
         {
             using (var c = new Context())
             {
-                return c.Users.Include(x => x.Departmant).Include(x=>x.Entrys).ToList();
+                return c.Users.Include(x => x.Departmant.University).Include(x=>x.Entrys).ToList();
             }
         }
 
@@ -33,6 +33,14 @@ namespace DataAccessLayer.EntityFramework
             using (var c = new Context())
             {
                 return c.Users.Include(x => x.Departmant).Include(x=>x.Departmant.University).Where(x => x.UserID == id).FirstOrDefault();
+            }
+        }
+
+        List<User> IUserDal.GetUserListWithUniversityByID(int id)
+        {
+            using (var c = new Context())
+            {
+                return c.Users.Include(x => x.Departmant.University).Where(x => x.UserID == id).ToList();
             }
         }
     }

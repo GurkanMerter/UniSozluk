@@ -21,9 +21,9 @@ namespace BussinesLayer.Concrete
             return _userDal.GetListAll(); //admin panelinde bütün yazarları listelemek için
         }
 
-        public User GetListWithUniversity(int id)
+        public User GetUserWithUniversityByID(int id)
         {
-            return _userDal.GetListWithUniversity(id);
+            return _userDal.GetUserWithUniversityByID(id);
         }
 
         public List<User> GetUserByID(int id)
@@ -48,7 +48,7 @@ namespace BussinesLayer.Concrete
 
         public void TDelete(User t)
         {
-            throw new NotImplementedException();
+           _userDal.Delete(t);
         }
 
         public User TGetById(int id)
@@ -58,8 +58,12 @@ namespace BussinesLayer.Concrete
 
         public void TUpdate(User t)
         {
-            throw new NotImplementedException();
+            _userDal.Update(t);
         }
 
+        public List<User> GetUserListWithUniversityByID(int id)
+        {
+            return _userDal.GetUserListWithUniversityByID(id);
+        }
     }
 }
