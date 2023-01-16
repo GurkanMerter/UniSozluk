@@ -67,7 +67,6 @@ namespace UniSozluk.Controllers
         {
             entry.EntryCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             em.TUpdate(entry);
-
             return RedirectToAction("EntryListAll");
         }
 

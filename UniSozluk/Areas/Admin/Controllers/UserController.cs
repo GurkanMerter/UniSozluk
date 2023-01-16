@@ -46,11 +46,8 @@ namespace UniSozluk.Areas.Admin.Controllers
         [HttpPost]
         public IActionResult UserEdit(User user)
         {
-            
-            
-            
+ 
             usm.TUpdate(user);
-
             return RedirectToAction("Index");
         }
 

@@ -48,15 +48,10 @@
                     @Html.TextBoxFor(x=>x.UserTelNo,new {@class = "form-control"})
                 </div>
                 <div class="form-group">
-                    @Html.Label("Üye şifre:")
+                    @Html.Label("Üye statü:")
                     @Html.TextBoxFor(x=>x.UserStatus,new {@class = "form-control"})
                 </div>
-                
-               @* <div class="form-group">
-                    @Html.Label("Entry İçeriği:")
-                    @Html.TextAreaFor(x=>x.EntryContent,10,3,new{@class = "form-control"})
-                    @Html.ValidationMessageFor(x=>x.EntryContent)
-                </div>*@
+             
                 <button type="submit" class="btn btn-success float-right mb-3">
                     Güncelle
                 </button>

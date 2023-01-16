@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,7 @@ namespace DataAccessLayer.Repositories
         {
             //throw new NotImplementedException();
             using var c = new Context();
+            c.Entry(t).State = EntityState.Added;
             c.Add(t);
             c.SaveChanges();
         }
@@ -53,6 +55,7 @@ namespace DataAccessLayer.Repositories
         {
             //throw new NotImplementedException();
             using var c = new Context();
+            c.Entry(t).State = EntityState.Modified; //updatelerken oluşan hatanın önüne geçmek için kullandık
             c.Update(t);
             c.SaveChanges();
         }
