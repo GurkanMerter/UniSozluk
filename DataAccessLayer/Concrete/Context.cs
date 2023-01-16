@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete
 {
-    public class Context : IdentityDbContext
+    public class Context : IdentityDbContext<AppUser, AppRole, int> //DbContext 
     {
         //cons. metod; || override olarak da tanımlama yapabiliriz;++
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -18,10 +18,14 @@ namespace DataAccessLayer.Concrete
             //parametremiz ise dbcontext oluşturucudur.
 
             //bağlanacağımız db kaynağını seçiyoruz; Connection strinngini seçiyoruz;
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB; Initial Catalog = UniSozluk; Integrated Security = True");
+            optionsBuilder.UseSqlServer("Data Source=DESKTOP-J5P05SU\\SQLEXPRESS; Initial Catalog = UniSozluk; Integrated Security = True");
 
-            //base.OnModelCreating(ModelBuilder);
+            //base.OnModelCreating(modelBuilder);
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        } 
 
         //contextleri yazmaya başlıyoruz; - > <SınıfAdı> Prop ismi
 
@@ -29,8 +33,10 @@ namespace DataAccessLayer.Concrete
         public DbSet<University> Universities { get; set; }
         public DbSet<Departmant> Departmants { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Person> Persons { get; set; }
         public DbSet<EntryLike> EntryLikes { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<Admin> Admins { get; set; }
 
     }
 }

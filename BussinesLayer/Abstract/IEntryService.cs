@@ -8,7 +8,7 @@ namespace BussinesLayer.Abstract
     public interface IEntryService:IGenericService<Entry>
     {
         List<Entry> GetEntryListWithDepartmant(); //departmant göre listeleme işlemi
-        List<Entry> GetEntryListByUser(int id);
+        List<Entry> GetEntryListByPerson(int id);
         List<Entry> GetEntryByID(int id);
         List<Entry> GetListWithDepartmantsByUniversity(int id);
 

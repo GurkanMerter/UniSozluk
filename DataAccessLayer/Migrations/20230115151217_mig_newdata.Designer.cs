@@ -4,6 +4,7 @@ using DataAccessLayer.Concrete;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230115151217_mig_newdata")]
+    partial class mig_newdata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +52,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("AdminID");
 
-                    b.ToTable("Admins", (string)null);
+                    b.ToTable("Admins");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Comment", b =>
@@ -83,7 +85,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("EntryID");
 
-                    b.ToTable("Comments", (string)null);
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Departmant", b =>
@@ -107,7 +109,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("UniversityID");
 
-                    b.ToTable("Departmants", (string)null);
+                    b.ToTable("Departmants");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Entry", b =>
@@ -139,7 +141,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("PersonID");
 
-                    b.ToTable("Entries", (string)null);
+                    b.ToTable("Entries");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.EntryLike", b =>
@@ -161,7 +163,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("EntryLikeID");
 
-                    b.ToTable("EntryLikes", (string)null);
+                    b.ToTable("EntryLikes");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Notification", b =>
@@ -192,7 +194,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("NotificationID");
 
-                    b.ToTable("Notifications", (string)null);
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Person", b =>
@@ -228,7 +230,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("DepartmantID");
 
-                    b.ToTable("Persons", (string)null);
+                    b.ToTable("Persons");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.University", b =>
@@ -247,7 +249,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("UniversityID");
 
-                    b.ToTable("Universities", (string)null);
+                    b.ToTable("Universities");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Comment", b =>

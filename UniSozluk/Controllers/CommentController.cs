@@ -1,11 +1,13 @@
 ﻿using BussinesLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace UniSozluk.Controllers
 {
+    [AllowAnonymous]
     public class CommentController : Controller
     {
         CommentManager cm = new CommentManager(new EfCommentRepository());
@@ -25,8 +27,7 @@ namespace UniSozluk.Controllers
         {
             com.CommentDate=DateTime.Parse(DateTime.Now.ToShortDateString());
             com.CommentStatus = true;
-            com.EntryID = 1;
-            com.CommentUserNickName = "Mike";
+            //com.EntryID = 1;
             cm.TAdd(com);
             return RedirectToAction("Mainpage","Entry");
         }

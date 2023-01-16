@@ -30,21 +30,21 @@ namespace DataAccessLayer.EntityFramework
             }
         }
 
-        public List<Entry> GetListWithUniversityByUser(int id)
+        public List<Entry> GetListWithUniversityByPerson(int id)
         {
             using (var c = new Context())
             {
-                return c.Entries.Include(x => x.Departmant.University).Where(x=>x.UserID == id).ToList();
+                return c.Entries.Include(x => x.Departmant.University).Where(x=>x.PersonID == id).ToList();
 
             }
         }
 
-        public List<Entry> GetListWithUser(int id)
+        public List<Entry> GetListWithPerson(int id)
         {
             //throw new NotImplementedException();
             using (var c = new Context())
             {
-                return c.Entries.Include(x => x.Users).Where(x=> x.Users.UserID == id).ToList();
+                return c.Entries.Include(x => x.Persons).Where(x=> x.Persons.PersonID == id).ToList();
                
             }
         }

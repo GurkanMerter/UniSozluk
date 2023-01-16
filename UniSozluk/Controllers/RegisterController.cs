@@ -11,7 +11,7 @@ namespace UniSozluk.Controllers
 {
     public class RegisterController : Controller
     {
-        UserManager um = new UserManager(new EfUserRepository());
+        PersonManager um = new PersonManager(new EfPersonRepository());
         UniversityManager unim = new UniversityManager(new EfUniversityRepository()); 
         DepartmantManager dm = new DepartmantManager(new EfDepartmantRepository());
 
@@ -26,10 +26,10 @@ namespace UniSozluk.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Index(User user)
+        public IActionResult Index(Person person)
         {
-            user.UserStatus = true;
-            um.TAdd(user);
+            person.PersonStatus = true;
+            um.TAdd(person);
             return RedirectToAction("MainPage","Entry");
         
         }

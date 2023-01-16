@@ -1,5 +1,5 @@
 ﻿@using EntityLayer.Concrete
-@model User
+@model Person
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -20,22 +20,22 @@
     <div class="row">
         <div class="card mb-4 bg-gradient-success col-6">
             <div class="card-body text-white">
-                @Model.UserFirstName @Model.UserLastName
+                @Model.PersonName
             </div>
         </div><div class="card mb-4 bg-gradient-success col-6 ">
             <div class="card-body text-white">
-                @Model.UserNickName
+                @Model.PersonNickName
             </div>
         </div>
     </div>
     <div class="row">
         <div class="card mb-4 bg-gradient-success col-6">
             <div class="card-body text-white">
-                @Model.UserTelNo
+                @Model.PersonTelNo
             </div>
         </div><div class="card mb-4 bg-gradient-success col-6 ">
             <div class="card-body text-white">
-                @Model.UserMail
+                @Model.PersonMail
             </div>
         </div>
     </div>
