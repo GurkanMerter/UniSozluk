@@ -26,7 +26,7 @@ namespace UniSozluk.Controllers
             com.CommentDate=DateTime.Parse(DateTime.Now.ToShortDateString());
             com.CommentStatus = true;
             com.EntryID = 1;
-            com.CommentUserNickName = "Mike";
+            com.CommentPersonNickName = "Mike";
             cm.TAdd(com);
             return RedirectToAction("Mainpage","Entry");
         }

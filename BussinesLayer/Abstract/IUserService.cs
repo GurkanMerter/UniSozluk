@@ -5,12 +5,12 @@ using System.Text;
 
 namespace BussinesLayer.Abstract
 {
-    public interface IUserService:IGenericService<User>
+    public interface IPersonService:IGenericService<Person>
     {
-        List<User> GetUserByID(int id);
-        User GetUserWithUniversityByID(int id);
-        List<User> GetUserListWithUniversityByID(int id);
-        User GetUserWithDepartmantAndUniversity(int id);
-        List<User> GetUsersWithDepartmantAndEntries();
+        List<Person> GetPersonByID(int id);
+        Person GetPersonWithUniversityByID(int id);
+        List<Person> GetPersonListWithUniversityByID(int id);
+        Person GetPersonWithDepartmantAndUniversity(int id);
+        List<Person> GetPersonsWithDepartmantAndEntries();
     }
 }

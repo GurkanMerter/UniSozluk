@@ -2,15 +2,15 @@
 using DataAccessLayer.EntityFramework;
 using Microsoft.AspNetCore.Mvc;
 
-namespace UniSozluk.ViewComponents.UserNickName
+namespace UniSozluk.ViewComponents.PersonNickName
 {
-    public class GetUserNickName:ViewComponent
+    public class GetPersonNickName:ViewComponent
     {
-        UserManager um = new UserManager(new EfUserRepository());
+        PersonManager um = new PersonManager(new EfPersonRepository());
 
         public IViewComponentResult Invoke(int id)
         {
-            var values = um.GetUserByID(id); //id değerini buna göre alıyorum.
+            var values = um.GetPersonByID(id); //id değerini buna göre alıyorum.
             return View(values);
         }
 

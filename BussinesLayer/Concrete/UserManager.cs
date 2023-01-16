@@ -7,63 +7,63 @@ using System.Text;
 
 namespace BussinesLayer.Concrete
 {
-    public class UserManager : IUserService
+    public class PersonManager : IPersonService
     {
-        IUserDal _userDal;
+        IPersonDal _PersonDal;
 
-        public UserManager(IUserDal userDal)
+        public PersonManager(IPersonDal PersonDal)
         {
-            _userDal = userDal;
+            _PersonDal = PersonDal;
         }
 
-        public List<User> GetList()
+        public List<Person> GetList()
         {
-            return _userDal.GetListAll(); //admin panelinde bütün yazarları listelemek için
+            return _PersonDal.GetListAll(); //admin panelinde bütün yazarları listelemek için
         }
 
-        public User GetUserWithUniversityByID(int id)
+        public Person GetPersonWithUniversityByID(int id)
         {
-            return _userDal.GetUserWithUniversityByID(id);
+            return _PersonDal.GetPersonWithUniversityByID(id);
         }
 
-        public List<User> GetUserByID(int id)
+        public List<Person> GetPersonByID(int id)
         {
-            return _userDal.GetListAll(x=>x.UserID==id);
+            return _PersonDal.GetListAll(x=>x.PersonID==id);
         }
 
-        public List<User> GetUsersWithDepartmantAndEntries()
+        public List<Person> GetPersonsWithDepartmantAndEntries()
         {
-            return _userDal.GetUsersWithDepartmantAndEntries();
+            return _PersonDal.GetPersonsWithDepartmantAndEntries();
         }
 
-        public User GetUserWithDepartmantAndUniversity(int id)
+        public Person GetPersonWithDepartmantAndUniversity(int id)
         {
-            return _userDal.GetUserWithDepartmantAndUniversity(id);
+            return _PersonDal.GetPersonWithDepartmantAndUniversity(id);
         }
 
-        public void TAdd(User t)
+        public void TAdd(Person t)
         {
-            _userDal.Insert(t);
+            _PersonDal.Insert(t);
         }
 
-        public void TDelete(User t)
+        public void TDelete(Person t)
         {
-           _userDal.Delete(t);
+           _PersonDal.Delete(t);
         }
 
-        public User TGetById(int id)
+        public Person TGetById(int id)
         {
-            return _userDal.GetByID(id);
+            return _PersonDal.GetByID(id);
         }
 
-        public void TUpdate(User t)
+        public void TUpdate(Person t)
         {
-            _userDal.Update(t);
+            _PersonDal.Update(t);
         }
 
-        public List<User> GetUserListWithUniversityByID(int id)
+        public List<Person> GetPersonListWithUniversityByID(int id)
         {
-            return _userDal.GetUserListWithUniversityByID(id);
+            return _PersonDal.GetPersonListWithUniversityByID(id);
         }
     }
 }

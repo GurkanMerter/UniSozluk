@@ -16,7 +16,7 @@
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-wrench"></i>
                     </a>
-                    <ul class="dropdown-menu dropdown-user">
+                    <ul class="dropdown-menu dropdown-Person">
                         <li>
                             <a href="#" class="dropdown-item">Config option 1</a>
                         </li>
@@ -46,7 +46,7 @@
                         </a>
                     </div>
 
-                    @await Component.InvokeAsync("GetUserNickName",new {id=item.UserID})
+                    @await Component.InvokeAsync("GetPersonNickName",new {id=item.PersonID})
 
                 </div>
 

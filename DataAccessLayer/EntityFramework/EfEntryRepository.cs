@@ -12,12 +12,12 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfEntryRepository : GenericRepository<Entry>, IEntryDal
     {
-        public Entry GetEntryWithUniversityandUserAndDepartmantByID(int id)
+        public Entry GetEntryWithUniversityandPersonAndDepartmantByID(int id)
         {
             
                 using (var c = new Context())
                 {
-                    return c.Entries.Include(x => x.Departmant.University).Include(x=>x.Departmant).Include(x=>x.Users).Where(x => x.EntryID == id).FirstOrDefault();
+                    return c.Entries.Include(x => x.Departmant.University).Include(x=>x.Departmant).Include(x=>x.Persons).Where(x => x.EntryID == id).FirstOrDefault();
                 }
             
         }
@@ -30,19 +30,19 @@ namespace DataAccessLayer.EntityFramework
             }
         }
 
-        public Entry GetEntryWithUserByID(int id)
+        public Entry GetEntryWithPersonByID(int id)
         {
             using (var c = new Context())
             {
-                return c.Entries.Include(x=>x.Users).Where(x=>x.EntryID.Equals(id)).FirstOrDefault();
+                return c.Entries.Include(x=>x.Persons).Where(x=>x.EntryID.Equals(id)).FirstOrDefault();
             }
         }
 
-        public List<Entry> GetListWithDepartmantByUserID(int id)
+        public List<Entry> GetListWithDepartmantByPersonID(int id)
         {
             using (var c = new Context())
             {
-                return c.Entries.Include(x=>x.Departmant.University).Include(x=>x.Users).Where(x=>x.Users.UserID==id).ToList();
+                return c.Entries.Include(x=>x.Departmant.University).Include(x=>x.Persons).Where(x=>x.Persons.PersonID==id).ToList();
             }
         }
 
@@ -74,30 +74,30 @@ namespace DataAccessLayer.EntityFramework
             }
         }
 
-        public List<Entry> GetListWithUniversityByUser(int id)
+        public List<Entry> GetListWithUniversityByPerson(int id)
         {
             using (var c = new Context())
             {
-                return c.Entries.Include(x => x.Departmant.University).Where(x=>x.UserID == id).ToList();
+                return c.Entries.Include(x => x.Departmant.University).Where(x=>x.PersonID == id).ToList();
 
             }
         }
 
-        public List<Entry> GetListWithUser(int id)
+        public List<Entry> GetListWithPerson(int id)
         {
             //throw new NotImplementedException();
             using (var c = new Context())
             {
-                return c.Entries.Include(x => x.Users).Where(x=> x.Users.UserID == id).ToList();
+                return c.Entries.Include(x => x.Persons).Where(x=> x.Persons.PersonID == id).ToList();
                
             }
         }
 
-        public List<Entry> GetListWithUser()
+        public List<Entry> GetListWithPerson()
         {
             using (var c = new Context())
             {
-                return c.Entries.Include(x => x.Users).ToList();
+                return c.Entries.Include(x => x.Persons).ToList();
 
             }
         }

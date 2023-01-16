@@ -26,7 +26,7 @@ namespace UniSozluk.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult EntryEdit(int id)
         {
-            var entry = em.GetEntryWithUniversityandUserAndDepartmantByID(id);
+            var entry = em.GetEntryWithUniversityandPersonAndDepartmantByID(id);
 
             List<SelectListItem> DepartmantValue = (from x in dm.GetListByUniversityID(entry.Departmant.University.UniversityID)
                                                     select new SelectListItem
@@ -43,17 +43,17 @@ namespace UniSozluk.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult EntryEdit(Entry entry)//userin tüm entryleri
+        public IActionResult EntryEdit(Entry entry)//Personin tüm entryleri
         {
             entry.EntryCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             entry.EntryStatus = true;
-            entry.UserID = 1;
+            entry.PersonID = 1;
             em.TUpdate(entry);
 
             return RedirectToAction("Index");
         }
 
-        public IActionResult EntryDelete(int id)//userin tüm entryleri
+        public IActionResult EntryDelete(int id)//Personin tüm entryleri
         {
             var value = em.TGetById(id);
             em.TDelete(value);

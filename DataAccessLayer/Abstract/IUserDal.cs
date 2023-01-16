@@ -5,12 +5,12 @@ using System.Text;
 
 namespace DataAccessLayer.Abstract
 {
-    public interface IUserDal : IGenericDal<User>
+    public interface IPersonDal : IGenericDal<Person>
     {
-        User GetUserWithUniversityByID(int id);
-        List<User> GetUserListWithUniversityByID(int id);
-        User GetUserWithDepartmantAndUniversity(int id);
-        List<User> GetUsersWithDepartmantAndEntries();
+        Person GetPersonWithUniversityByID(int id);
+        List<Person> GetPersonListWithUniversityByID(int id);
+        Person GetPersonWithDepartmantAndUniversity(int id);
+        List<Person> GetPersonsWithDepartmantAndEntries();
 
 
     }

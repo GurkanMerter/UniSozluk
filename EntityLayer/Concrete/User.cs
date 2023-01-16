@@ -5,17 +5,17 @@ using System.Text;
 
 namespace EntityLayer.Concrete
 {
-    public class User
+    public class Person
     {
         [Key]
-        public int UserID { get; set; }      
-        public string UserFirstName { get; set; }
-        public string UserLastName { get; set; }
-        public string UserNickName { get; set; }
-        public string UserMail { get; set; }
-        public string UserPassword { get; set; }
-        public string UserTelNo { get; set; } //varchar olarak
-        public bool UserStatus { get; set; }
+        public int PersonID { get; set; }      
+        public string PersonFirstName { get; set; }
+        public string PersonLastName { get; set; }
+        public string PersonNickName { get; set; }
+        public string PersonMail { get; set; }
+        public string PersonPassword { get; set; }
+        public string PersonTelNo { get; set; } //varchar olarak
+        public bool PersonStatus { get; set; }
         public List<Entry> Entrys { get; set; }
         public int? DepartmantID { get; set; }
         public Departmant Departmant { get; set; }

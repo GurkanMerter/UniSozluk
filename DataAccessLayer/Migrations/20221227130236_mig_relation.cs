@@ -8,7 +8,7 @@ namespace DataAccessLayer.Migrations
         {
             migrationBuilder.AddColumn<int>(
                 name: "DepartmantID",
-                table: "Users",
+                table: "Persons",
                 nullable: true);
 
             migrationBuilder.AddColumn<int>(
@@ -17,7 +17,7 @@ namespace DataAccessLayer.Migrations
                 nullable: true);
 
             migrationBuilder.AddColumn<int>(
-                name: "UserID",
+                name: "PersonID",
                 table: "Entries",
                 nullable: false,
                 defaultValue: 0);
@@ -33,8 +33,8 @@ namespace DataAccessLayer.Migrations
                 nullable: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_DepartmantID",
-                table: "Users",
+                name: "IX_Persons_DepartmantID",
+                table: "Persons",
                 column: "DepartmantID");
 
             migrationBuilder.CreateIndex(
@@ -43,9 +43,9 @@ namespace DataAccessLayer.Migrations
                 column: "DepartmantID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Entries_UserID",
+                name: "IX_Entries_PersonID",
                 table: "Entries",
-                column: "UserID");
+                column: "PersonID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Departmants_UniversityID",
@@ -82,16 +82,16 @@ namespace DataAccessLayer.Migrations
                 onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Entries_Users_UserID",
+                name: "FK_Entries_Persons_PersonID",
                 table: "Entries",
-                column: "UserID",
-                principalTable: "Users",
-                principalColumn: "UserID",
+                column: "PersonID",
+                principalTable: "Persons",
+                principalColumn: "PersonID",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Users_Departmants_DepartmantID",
-                table: "Users",
+                name: "FK_Persons_Departmants_DepartmantID",
+                table: "Persons",
                 column: "DepartmantID",
                 principalTable: "Departmants",
                 principalColumn: "DepartmantID",
@@ -113,23 +113,23 @@ namespace DataAccessLayer.Migrations
                 table: "Entries");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Entries_Users_UserID",
+                name: "FK_Entries_Persons_PersonID",
                 table: "Entries");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Users_Departmants_DepartmantID",
-                table: "Users");
+                name: "FK_Persons_Departmants_DepartmantID",
+                table: "Persons");
 
             migrationBuilder.DropIndex(
-                name: "IX_Users_DepartmantID",
-                table: "Users");
+                name: "IX_Persons_DepartmantID",
+                table: "Persons");
 
             migrationBuilder.DropIndex(
                 name: "IX_Entries_DepartmantID",
                 table: "Entries");
 
             migrationBuilder.DropIndex(
-                name: "IX_Entries_UserID",
+                name: "IX_Entries_PersonID",
                 table: "Entries");
 
             migrationBuilder.DropIndex(
@@ -142,14 +142,14 @@ namespace DataAccessLayer.Migrations
 
             migrationBuilder.DropColumn(
                 name: "DepartmantID",
-                table: "Users");
+                table: "Persons");
 
             migrationBuilder.DropColumn(
                 name: "DepartmantID",
                 table: "Entries");
 
             migrationBuilder.DropColumn(
-                name: "UserID",
+                name: "PersonID",
                 table: "Entries");
 
             migrationBuilder.DropColumn(

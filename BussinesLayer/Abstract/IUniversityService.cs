@@ -10,6 +10,6 @@ namespace BussinesLayer.Abstract
         List<University> GetList(int id);
 
         List<University> GetUniversitiesWithDepartmants();
-        //List<University> GetUniversityByUser(User user);
+        //List<University> GetUniversityByPerson(Person Person);
     }
 }

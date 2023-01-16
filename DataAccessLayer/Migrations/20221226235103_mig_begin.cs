@@ -22,12 +22,12 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUsers",
+                name: "AspNetPersons",
                 columns: table => new
                 {
                     Id = table.Column<string>(nullable: false),
-                    UserName = table.Column<string>(maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
+                    PersonName = table.Column<string>(maxLength: 256, nullable: true),
+                    NormalizedPersonName = table.Column<string>(maxLength: 256, nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
@@ -43,7 +43,7 @@ namespace DataAccessLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                    table.PrimaryKey("PK_AspNetPersons", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -52,7 +52,7 @@ namespace DataAccessLayer.Migrations
                 {
                     CommentID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CommentUserNickName = table.Column<string>(nullable: true),
+                    CommentPersonNickName = table.Column<string>(nullable: true),
                     CommentContent = table.Column<string>(nullable: true),
                     CommentDate = table.Column<DateTime>(nullable: false),
                     CommentStatus = table.Column<bool>(nullable: false)
@@ -106,22 +106,22 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "Persons",
                 columns: table => new
                 {
-                    UserID = table.Column<int>(nullable: false)
+                    PersonID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserFirstName = table.Column<string>(nullable: true),
-                    UserLastName = table.Column<string>(nullable: true),
-                    UserNickName = table.Column<string>(nullable: true),
-                    UserMail = table.Column<string>(nullable: true),
-                    UserPassword = table.Column<string>(nullable: true),
-                    UserTelNo = table.Column<string>(nullable: true),
-                    UserStatus = table.Column<bool>(nullable: false)
+                    PersonFirstName = table.Column<string>(nullable: true),
+                    PersonLastName = table.Column<string>(nullable: true),
+                    PersonNickName = table.Column<string>(nullable: true),
+                    PersonMail = table.Column<string>(nullable: true),
+                    PersonPassword = table.Column<string>(nullable: true),
+                    PersonTelNo = table.Column<string>(nullable: true),
+                    PersonStatus = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.UserID);
+                    table.PrimaryKey("PK_Persons", x => x.PersonID);
                 });
 
             migrationBuilder.CreateTable(
@@ -146,86 +146,86 @@ namespace DataAccessLayer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserClaims",
+                name: "AspNetPersonClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(nullable: false),
+                    PersonId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserClaims", x => x.Id);
+                    table.PrimaryKey("PK_AspNetPersonClaims", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AspNetUserClaims_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        name: "FK_AspNetPersonClaims_AspNetPersons_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "AspNetPersons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserLogins",
+                name: "AspNetPersonLogins",
                 columns: table => new
                 {
                     LoginProvider = table.Column<string>(nullable: false),
                     ProviderKey = table.Column<string>(nullable: false),
                     ProviderDisplayName = table.Column<string>(nullable: true),
-                    UserId = table.Column<string>(nullable: false)
+                    PersonId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserLogins", x => new { x.LoginProvider, x.ProviderKey });
+                    table.PrimaryKey("PK_AspNetPersonLogins", x => new { x.LoginProvider, x.ProviderKey });
                     table.ForeignKey(
-                        name: "FK_AspNetUserLogins_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        name: "FK_AspNetPersonLogins_AspNetPersons_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "AspNetPersons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserRoles",
+                name: "AspNetPersonRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(nullable: false),
+                    PersonId = table.Column<string>(nullable: false),
                     RoleId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserRoles", x => new { x.UserId, x.RoleId });
+                    table.PrimaryKey("PK_AspNetPersonRoles", x => new { x.PersonId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetRoles_RoleId",
+                        name: "FK_AspNetPersonRoles_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AspNetUserRoles_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        name: "FK_AspNetPersonRoles_AspNetPersons_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "AspNetPersons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "AspNetUserTokens",
+                name: "AspNetPersonTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(nullable: false),
+                    PersonId = table.Column<string>(nullable: false),
                     LoginProvider = table.Column<string>(nullable: false),
                     Name = table.Column<string>(nullable: false),
                     Value = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
+                    table.PrimaryKey("PK_AspNetPersonTokens", x => new { x.PersonId, x.LoginProvider, x.Name });
                     table.ForeignKey(
-                        name: "FK_AspNetUserTokens_AspNetUsers_UserId",
-                        column: x => x.UserId,
-                        principalTable: "AspNetUsers",
+                        name: "FK_AspNetPersonTokens_AspNetPersons_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "AspNetPersons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -243,31 +243,31 @@ namespace DataAccessLayer.Migrations
                 filter: "[NormalizedName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserClaims_UserId",
-                table: "AspNetUserClaims",
-                column: "UserId");
+                name: "IX_AspNetPersonClaims_PersonId",
+                table: "AspNetPersonClaims",
+                column: "PersonId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserLogins_UserId",
-                table: "AspNetUserLogins",
-                column: "UserId");
+                name: "IX_AspNetPersonLogins_PersonId",
+                table: "AspNetPersonLogins",
+                column: "PersonId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AspNetUserRoles_RoleId",
-                table: "AspNetUserRoles",
+                name: "IX_AspNetPersonRoles_RoleId",
+                table: "AspNetPersonRoles",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
                 name: "EmailIndex",
-                table: "AspNetUsers",
+                table: "AspNetPersons",
                 column: "NormalizedEmail");
 
             migrationBuilder.CreateIndex(
-                name: "UserNameIndex",
-                table: "AspNetUsers",
-                column: "NormalizedUserName",
+                name: "PersonNameIndex",
+                table: "AspNetPersons",
+                column: "NormalizedPersonName",
                 unique: true,
-                filter: "[NormalizedUserName] IS NOT NULL");
+                filter: "[NormalizedPersonName] IS NOT NULL");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -276,16 +276,16 @@ namespace DataAccessLayer.Migrations
                 name: "AspNetRoleClaims");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserClaims");
+                name: "AspNetPersonClaims");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserLogins");
+                name: "AspNetPersonLogins");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserRoles");
+                name: "AspNetPersonRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUserTokens");
+                name: "AspNetPersonTokens");
 
             migrationBuilder.DropTable(
                 name: "Comments");
@@ -300,13 +300,13 @@ namespace DataAccessLayer.Migrations
                 name: "Universities");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Persons");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
+                name: "AspNetPersons");
         }
     }
 }

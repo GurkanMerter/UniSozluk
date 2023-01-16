@@ -29,7 +29,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<University> Universities { get; set; }
         public DbSet<Departmant> Departmants { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Person> Persons { get; set; }
         public DbSet<EntryLike> EntryLikes { get; set; }
 
     }

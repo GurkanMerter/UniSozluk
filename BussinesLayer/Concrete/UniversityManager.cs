@@ -31,9 +31,9 @@ namespace BussinesLayer.Concrete
             return _universitydal.GetUniversitiesWithDepartmants();
         }
 
-        //public List<University> GetUniversityByUser(User user)
+        //public List<University> GetUniversityByPerson(Person Person)
         //{
-        //    return  _universitydal.GetUniversityByUser(user);
+        //    return  _universitydal.GetUniversityByPerson(Person);
         //}
 
         public void TAdd(University t)
