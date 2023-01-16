@@ -7,6 +7,7 @@ namespace BussinesLayer.Abstract
 {
     public interface IEntryService:IGenericService<Entry>
     {
+        //deneme
         List<Entry> GetEntryListWithDepartmant(); //departmant göre listeleme işlemi
         List<Entry> GetEntryListByUser(int id);
         List<Entry> GetEntryByID(int id);
