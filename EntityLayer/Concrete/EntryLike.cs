@@ -9,7 +9,7 @@ namespace EntityLayer.Concrete
 {
     public class EntryLike
     {
-        
+        //
         public int EntryLikeID { get; set; }
         public int EntryID { get; set; }
         public int Score { get; set; } // artı eksi toplamı
