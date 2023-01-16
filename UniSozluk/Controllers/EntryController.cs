@@ -9,28 +9,34 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
+using DataAccessLayer.Concrete;
 
 namespace UniSozluk.Controllers
 {
     [AllowAnonymous]
     public class EntryController : Controller
     {
-        
+        Context context = new Context();    
         EntryManager em = new EntryManager(new EfEntryRepository());
         UniversityManager um = new UniversityManager(new EfUniversityRepository());
         DepartmantManager dm = new DepartmantManager(new EfDepartmantRepository());
-        UserManager usm = new UserManager(new EfUserRepository());
+        PersonManager usm = new PersonManager(new EfPersonRepository());
 
-        
+        [AllowAnonymous]
         public IActionResult MainPage()
         {
+            //sisteme authantica olmuş kullanıcıya göre veri gerişi yapmak istiyorum;
+            var username = User.Identity.Name;
+            ViewBag.v = username;
+            //var usermail = context.User.Where(x =>x.);
+
             var values = em.GetEntryListWithDepartmant();
             return View(values);
         }
-
+       
         public IActionResult EntryListAll()//userin tüm entryleri
         {
-            var values = em.GetListWithUniversityByUser(1);
+            var values = em.GetListWithUniversityByPerson(1);
             return View(values);
         } 
         
@@ -65,12 +71,13 @@ namespace UniSozluk.Controllers
         {
             entry.EntryCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             entry.EntryStatus = true ;
-            entry.UserID = 1;
+            entry.PersonID = 1;
             em.TUpdate(entry);
             
             return RedirectToAction("EntryListAll");
-        } 
-        
+        }
+
+        [AllowAnonymous]
         public IActionResult EntryReadAll(int id)
         {
             ViewBag.i = id; //gönderdiğimiz id'yi yazdırmak için;
@@ -110,7 +117,7 @@ namespace UniSozluk.Controllers
             {
                 e.EntryStatus = true;
                 e.EntryCreateDate= DateTime.Parse(DateTime.Now.ToShortDateString());
-                e.UserID = 1;
+                e.PersonID = 1;
                 em.TAdd(e);
                 return RedirectToAction("EntryListAll", "Entry");
             }

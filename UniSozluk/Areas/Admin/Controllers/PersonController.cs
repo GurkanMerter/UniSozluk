@@ -8,9 +8,9 @@ namespace UniSozluk.Areas.Admin.Controllers
 {
     [AllowAnonymous]
     [Area("Admin")]
-    public class UserController : Controller
+    public class PersonController : Controller
     {
-        UserManager usm = new UserManager(new EfUserRepository());
+        PersonManager usm = new PersonManager(new EfPersonRepository());
         public IActionResult Index(int page = 1)
         {
             var values = usm.GetList().ToPagedList(page, 25);

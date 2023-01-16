@@ -9,6 +9,6 @@ namespace DataAccessLayer.Abstract
     {
         // List<University> GetListWithUniversity();
 
-        //List<University> GetUniversityByUser(User user);
+        //List<University> GetUniversityByPerson(User user);
     }
 }

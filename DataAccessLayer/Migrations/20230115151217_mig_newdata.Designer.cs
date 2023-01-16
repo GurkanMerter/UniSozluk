@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20230112230423_mig_removeidentity")]
-    partial class mig_removeidentity
+    [Migration("20230115151217_mig_newdata")]
+    partial class mig_newdata
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,11 +69,11 @@ namespace DataAccessLayer.Migrations
                     b.Property<DateTime>("CommentDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CommentPersonNickName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("CommentStatus")
                         .HasColumnType("bit");
-
-                    b.Property<string>("CommentUserNickName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("EntryID")
                         .HasColumnType("int");
@@ -132,14 +132,14 @@ namespace DataAccessLayer.Migrations
                     b.Property<bool>("EntryStatus")
                         .HasColumnType("bit");
 
-                    b.Property<int>("UserID")
+                    b.Property<int>("PersonID")
                         .HasColumnType("int");
 
                     b.HasKey("EntryID");
 
                     b.HasIndex("DepartmantID");
 
-                    b.HasIndex("UserID");
+                    b.HasIndex("PersonID");
 
                     b.ToTable("Entries");
                 });
@@ -197,6 +197,42 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Notifications");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.Person", b =>
+                {
+                    b.Property<int>("PersonID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PersonID"), 1L, 1);
+
+                    b.Property<int?>("DepartmantID")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PersonMail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PersonName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PersonNickName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PersonPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PersonStatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PersonTelNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("PersonID");
+
+                    b.HasIndex("DepartmantID");
+
+                    b.ToTable("Persons");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.University", b =>
                 {
                     b.Property<int>("UniversityID")
@@ -214,45 +250,6 @@ namespace DataAccessLayer.Migrations
                     b.HasKey("UniversityID");
 
                     b.ToTable("Universities");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.User", b =>
-                {
-                    b.Property<int>("UserID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserID"), 1L, 1);
-
-                    b.Property<int?>("DepartmantID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserFirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserLastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserMail")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserNickName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UserPassword")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("UserStatus")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserTelNo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("UserID");
-
-                    b.HasIndex("DepartmantID");
-
-                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Comment", b =>
@@ -279,21 +276,21 @@ namespace DataAccessLayer.Migrations
                         .WithMany("Entries")
                         .HasForeignKey("DepartmantID");
 
-                    b.HasOne("EntityLayer.Concrete.User", "Users")
+                    b.HasOne("EntityLayer.Concrete.Person", "Persons")
                         .WithMany("Entrys")
-                        .HasForeignKey("UserID")
+                        .HasForeignKey("PersonID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Departmant");
 
-                    b.Navigation("Users");
+                    b.Navigation("Persons");
                 });
 
-            modelBuilder.Entity("EntityLayer.Concrete.User", b =>
+            modelBuilder.Entity("EntityLayer.Concrete.Person", b =>
                 {
                     b.HasOne("EntityLayer.Concrete.Departmant", "Departmant")
-                        .WithMany("Users")
+                        .WithMany("Persons")
                         .HasForeignKey("DepartmantID");
 
                     b.Navigation("Departmant");
@@ -303,7 +300,7 @@ namespace DataAccessLayer.Migrations
                 {
                     b.Navigation("Entries");
 
-                    b.Navigation("Users");
+                    b.Navigation("Persons");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Entry", b =>
@@ -311,14 +308,14 @@ namespace DataAccessLayer.Migrations
                     b.Navigation("Comments");
                 });
 
+            modelBuilder.Entity("EntityLayer.Concrete.Person", b =>
+                {
+                    b.Navigation("Entrys");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.University", b =>
                 {
                     b.Navigation("Departmants");
-                });
-
-            modelBuilder.Entity("EntityLayer.Concrete.User", b =>
-                {
-                    b.Navigation("Entrys");
                 });
 #pragma warning restore 612, 618
         }

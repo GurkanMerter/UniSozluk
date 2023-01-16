@@ -10,21 +10,21 @@ using System.Text;
 
 namespace DataAccessLayer.EntityFramework
 {
-    public class EfUserRepository : GenericRepository<User>, IUserDal
+    public class EfPersonRepository : GenericRepository<Person>, IPersonDal
     {
-        public User GetListWithUniversity(int id)
+        public Person GetListWithUniversity(int id)
         {
             using (var c = new Context())
             {
-                return c.Users.Include(x => x.Departmant.University).Where(x=>x.UserID==id).FirstOrDefault();
+                return c.Persons.Include(x => x.Departmant.University).Where(x=>x.PersonID ==id).FirstOrDefault();
             }
         }
 
-        public User GetUserWithDepartmantAndUniversity(int id)
+        public Person GetPersonWithDepartmantAndUniversity(int id)
         {
             using (var c = new Context())
             {
-                return c.Users.Include(x => x.Departmant).Include(x=>x.Departmant.University).Where(x => x.UserID == id).FirstOrDefault();
+                return c.Persons.Include(x => x.Departmant).Include(x=>x.Departmant.University).Where(x => x.PersonID == id).FirstOrDefault();
             }
         }
     }

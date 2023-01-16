@@ -34,8 +34,8 @@ namespace UniSozluk.Controllers
                 {
                     Email = u.Mail,
                     UserName = u.UserName,
-                    Name = u.Name,
-                    Surname = u.Surname,
+                    NameSurname = u.NameSurname,
+                    University = u.University,
                 };
                 var result = await _userManager.CreateAsync(user,u.Password);
 

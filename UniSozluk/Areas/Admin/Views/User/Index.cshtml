@@ -1,7 +1,7 @@
 ﻿@using EntityLayer.Concrete
 @using X.PagedList
 @using X.PagedList.Mvc.Core
-@model IPagedList<User>
+@model IPagedList<Person>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -37,13 +37,12 @@
                                 {
 
                                     <tr class="gradeX">
-                                        <td>@item.UserID</td>
-                                        <td>@item.UserFirstName</td>
-                                        <td>@item.UserLastName</td>
-                                        <td>@item.UserNickName</td>
-                                        <td>@item.UserMail</td>
-                                        <td>@item.UserTelNo</td>
-                                        <td>@item.UserStatus</td>
+                                        <td>@item.PersonID</td>
+                                        <td>@item.PersonName</td>
+                                        <td>@item.PersonNickName</td>
+                                        <td>@item.PersonMail</td>
+                                        <td>@item.PersonTelNo</td>
+                                        <td>@item.PersonStatus</td>
                                         <td class="center">@item.DepartmantID</td>
                                         <td class="center">X</td>
 

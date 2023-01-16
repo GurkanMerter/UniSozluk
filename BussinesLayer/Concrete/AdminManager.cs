@@ -1,4 +1,5 @@
 ﻿using BussinesLayer.Abstract;
+using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,13 @@ namespace BussinesLayer.Concrete
 {
     public class AdminManager : IAdminService
     {
+        IAdminDal _adminDal;
+
+        public AdminManager(IAdminDal adminDal)
+        {
+            _adminDal = adminDal;
+        }
+
         public List<Admin> GetList()
         {
             throw new NotImplementedException();
@@ -17,12 +25,14 @@ namespace BussinesLayer.Concrete
 
         public void TAdd(Admin t)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            _adminDal.Insert(t);
         }
 
         public void TDelete(Admin t)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            _adminDal.Delete(t);
         }
 
         public Admin TGetById(int id)
@@ -32,7 +42,8 @@ namespace BussinesLayer.Concrete
 
         public void TUpdate(Admin t)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            _adminDal.Update(t);
         }
     }
 }

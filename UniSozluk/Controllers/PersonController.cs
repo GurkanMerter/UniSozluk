@@ -8,17 +8,17 @@ using System.Linq;
 namespace UniSozluk.Controllers
 {
     [AllowAnonymous]
-    public class UserController : Controller
+    public class PersonController : Controller
     {
-        UserManager usm = new UserManager(new EfUserRepository());
+        PersonManager usm = new PersonManager(new EfPersonRepository());
         Context context = new Context();
 
         [HttpGet]
         public IActionResult Index(int id)
         {
-            var value = usm.GetUserWithDepartmantAndUniversity(id);
+            var value = usm.GetPersonWithDepartmantAndUniversity(id);
             ViewBag.universityEntryCount = context.Entries.Where(x => x.Departmant.University.UniversityID == value.Departmant.University.UniversityID).Count();
-            ViewBag.userEntryCount = context.Entries.Where(x=>x.UserID == id).Count();
+            ViewBag.userEntryCount = context.Entries.Where(x=>x.PersonID == id).Count();
             return View(value);
         }
     }
