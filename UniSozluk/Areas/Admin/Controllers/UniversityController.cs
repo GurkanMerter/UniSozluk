@@ -38,7 +38,7 @@ namespace UniSozluk.Areas.Admin.Controllers
                                                     ).ToList();
             ViewBag.depValue = DepartmantValue;
 
-           // var value = usm.GetUserWithUniversityByID(id);
+           // var value = usm.GetPersonWithUniversityByID(id);
 
             return View(university);
         }

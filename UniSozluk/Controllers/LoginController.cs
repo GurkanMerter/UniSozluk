@@ -21,22 +21,22 @@ namespace UniSozluk.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Index(User user)
+        public async Task<IActionResult> Index(Person Person)
         {
             Context context = new Context();
-            var check = context.Users.FirstOrDefault(x=>x.UserMail==user.UserMail && x.UserPassword==user.UserPassword);
+            var check = context.Persons.FirstOrDefault(x=>x.PersonMail==Person.PersonMail && x.PersonPassword==Person.PersonPassword);
             if (check != null)
             {
                 //Talep oluşturacağız
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name,user.UserMail)
+                    new Claim(ClaimTypes.Name,Person.PersonMail)
                 };
-                var useridentity = new ClaimsIdentity(claims,"a");
-                ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
+                var Personidentity = new ClaimsIdentity(claims,"a");
+                ClaimsPrincipal principal = new ClaimsPrincipal(Personidentity);
                 await HttpContext.SignInAsync(principal);
 
-                //HttpContext.Session.SetString("UserMail", user.UserMail);         //session seviyesinde 
+                //HttpContext.Session.SetString("PersonMail", Person.PersonMail);         //session seviyesinde 
                 
                 return RedirectToAction("MainPage", "Entry");
             }

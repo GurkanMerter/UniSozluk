@@ -8,16 +8,16 @@ namespace BussinesLayer.Abstract
     public interface IEntryService:IGenericService<Entry>
     {
         List<Entry> GetEntryListWithDepartmant(); //departmant göre listeleme işlemi
-        List<Entry> GetEntryListByUser(int id);
+        List<Entry> GetEntryListByPerson(int id);
         List<Entry> GetEntryByID(int id);
         List<Entry> GetListWithDepartmantsByUniversity(int id);
-        List<Entry> GetListWithUser();
+        List<Entry> GetListWithPerson();
         List<Entry> Get5WithDepartmantOrderByComment();
         Entry GetEntryWithUniversityByID(int id);
-        List<Entry> GetListWithDepartmantByUserID(int id);
-        Entry GetEntryWithUserByID(int id);
+        List<Entry> GetListWithDepartmantByPersonID(int id);
+        Entry GetEntryWithPersonByID(int id);
 
         /*aaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/
-        Entry GetEntryWithUniversityandUserAndDepartmantByID(int id);
+        Entry GetEntryWithUniversityandPersonAndDepartmantByID(int id);
     }
 }

@@ -14,11 +14,11 @@
         {
             <div class="container-fluid mt-2">
                 @*<div class="form-group">
-                    @Html.TextBoxFor(x=>x.UserID,new{@class="form-control", @hidden="true"})
+                    @Html.TextBoxFor(x=>x.PersonID,new{@class="form-control", @hidden="true"})
                 </div>*@
                 <div class="form-group">
                     @Html.Label("Üniversite:")
-                    @*@Html.TextBoxFor(x=>x.Users.Departmant.University.UniversityName,(string)@ViewBag.university,new {@class = "form-control", @readonly="readonly"})*@
+                    @*@Html.TextBoxFor(x=>x.Persons.Departmant.University.UniversityName,(string)@ViewBag.university,new {@class = "form-control", @readonly="readonly"})*@
                     @Html.DropDownListFor(x=>x.DepartmantID,(List<SelectListItem>)ViewBag.depValue2,new{@class = "form-control",@disabled = "disabled" })
                 </div>
                 <div class="form-group">

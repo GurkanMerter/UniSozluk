@@ -12,7 +12,7 @@ namespace DataAccessLayer.EntityFramework
 {
     public class EfUniversityRepository : GenericRepository<University>, IUniversityDal
     {
-        //public University GetUniversityByUser(int id)
+        //public University GetUniversityByPerson(int id)
         //{
         //    using (var c = new Context())
         //    {
@@ -20,11 +20,11 @@ namespace DataAccessLayer.EntityFramework
 
         //    }
         //}
-        //public List<University> GetUniversityByUser(User user)
+        //public List<University> GetUniversityByPerson(Person Person)
         //{
         //    using (var c = new Context())
         //    {
-        //       return c.Universities.Where(x=>x.UniversityID==user.Departmant.UniversityID).ToList();
+        //       return c.Universities.Where(x=>x.UniversityID==Person.Departmant.UniversityID).ToList();
         //    }
         //}
         public List<University> GetUniversitiesWithDepartmants()

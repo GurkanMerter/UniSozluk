@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete
 {
-    public class Context : IdentityDbContext
+    public class Context : IdentityDbContext<AppUser,AppRole,int>
     {
         //cons. metod; || override olarak da tanımlama yapabiliriz;++
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -29,8 +29,11 @@ namespace DataAccessLayer.Concrete
         public DbSet<University> Universities { get; set; }
         public DbSet<Departmant> Departmants { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Person> Persons { get; set; }
         public DbSet<EntryLike> EntryLikes { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        
 
     }
 }

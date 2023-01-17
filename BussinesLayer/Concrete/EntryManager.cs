@@ -22,9 +22,9 @@ namespace BussinesLayer.Concrete
             return  _entryDal.GetListAll(x=>x.EntryID == id);
         }
 
-        public List<Entry> GetEntryListByUser(int id)
+        public List<Entry> GetEntryListByPerson(int id)
         {
-            return _entryDal.GetListWithUser(id);
+            return _entryDal.GetListWithPerson(id);
         }
 
         public List<Entry> GetEntryListWithDepartmant()
@@ -57,9 +57,9 @@ namespace BussinesLayer.Concrete
             _entryDal.Update(t);
         }
 
-        public List<Entry> GetListWithUniversityByUser(int id)
+        public List<Entry> GetListWithUniversityByPerson(int id)
         {
-            return _entryDal.GetListWithUniversityByUser(id);
+            return _entryDal.GetListWithUniversityByPerson(id);
         }
 
         public List<Entry> GetListWithDepartmantsByUniversity(int id)
@@ -67,9 +67,9 @@ namespace BussinesLayer.Concrete
             return _entryDal.GetListWithDepartmantsByUniversity(id);
         }
 
-        public List<Entry> GetListWithUser()
+        public List<Entry> GetListWithPerson()
         {
-            return _entryDal.GetListWithUser();
+            return _entryDal.GetListWithPerson();
         }
 
         public List<Entry> Get5WithDepartmantOrderByComment()
@@ -82,19 +82,19 @@ namespace BussinesLayer.Concrete
             return _entryDal.GetEntryWithUniversityByID(id);
         }
 
-        public List<Entry> GetListWithDepartmantByUserID(int id)
+        public List<Entry> GetListWithDepartmantByPersonID(int id)
         {
-            return _entryDal.GetListWithDepartmantByUserID(id);
+            return _entryDal.GetListWithDepartmantByPersonID(id);
         }
 
-        public Entry GetEntryWithUserByID(int id)
+        public Entry GetEntryWithPersonByID(int id)
         {
-            return _entryDal.GetEntryWithUserByID(id);
+            return _entryDal.GetEntryWithPersonByID(id);
         }
 
-        public Entry GetEntryWithUniversityandUserAndDepartmantByID(int id)
+        public Entry GetEntryWithUniversityandPersonAndDepartmantByID(int id)
         {
-            return _entryDal.GetEntryWithUniversityandUserAndDepartmantByID(id);
+            return _entryDal.GetEntryWithUniversityandPersonAndDepartmantByID(id);
         }
     }
 }

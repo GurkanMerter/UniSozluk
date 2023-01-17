@@ -9,6 +9,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
+using DataAccessLayer.Concrete;
 
 namespace UniSozluk.Controllers
 {
@@ -19,23 +20,30 @@ namespace UniSozluk.Controllers
         EntryManager em = new EntryManager(new EfEntryRepository());
         UniversityManager um = new UniversityManager(new EfUniversityRepository());
         DepartmantManager dm = new DepartmantManager(new EfDepartmantRepository());
-        UserManager usm = new UserManager(new EfUserRepository());
+        PersonManager usm = new PersonManager(new EfPersonRepository());
+        Context context = new Context();
 
 
         public IActionResult MainPage()
         {
+            //sisteme authantica olmuş kullanıcıya göre veri gerişi yapmak istiyorum;
+            var username = User.Identity.Name;
+            ViewBag.v = username;
+            var usermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
+            var personid = context.Persons.Where(x => x.PersonMail == usermail).Select(y => y.PersonID).FirstOrDefault();
             var values = em.GetEntryListWithDepartmant();
+
             return View(values);
         }
 
-        public IActionResult EntryListAll()//userin tüm entryleri
+        public IActionResult EntryListAll()//Personin tüm entryleri
         {
-            var values = em.GetListWithUniversityByUser(1);
+            var values = em.GetListWithUniversityByPerson(1);
             return View(values);
         }
 
 
-        public IActionResult EntryDelete(int id)//userin tüm entryleri
+        public IActionResult EntryDelete(int id)//Personin tüm entryleri
         {
             var value = em.TGetById(id);
             em.TDelete(value);
@@ -44,9 +52,11 @@ namespace UniSozluk.Controllers
 
 
         [HttpGet]
-        public IActionResult EntryEdit(int id)//userin tüm entryleri
+        public IActionResult EntryEdit(int id)//Personin tüm entryleri
         {
-            var entry = em.GetEntryWithUniversityandUserAndDepartmantByID(id);
+           
+
+            var entry = em.GetEntryWithUniversityandPersonAndDepartmantByID(id);
 
             List<SelectListItem> DepartmantValue = (from x in dm.GetListByUniversityID(entry.Departmant.University.UniversityID)
                                                     select new SelectListItem
@@ -63,9 +73,16 @@ namespace UniSozluk.Controllers
         }
 
         [HttpPost]
-        public IActionResult EntryEdit(Entry entry)//userin tüm entryleri
+        public IActionResult EntryEdit(Entry entry)//Personin tüm entryleri
         {
+            var username = User.Identity.Name;
+            var usermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
+            var personID = context.Persons.Where(x => x.PersonMail == usermail).Select(y => y.PersonID).FirstOrDefault();
+            //var personUni = context.Persons.Where(x => x.PersonID == personID).Select(y => y.Departmant.UniversityID).FirstOrDefault().Value;
+
             entry.EntryCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
+            entry.EntryStatus = true;
+            entry.PersonID = personID;
             em.TUpdate(entry);
             return RedirectToAction("EntryListAll");
         }
@@ -80,15 +97,15 @@ namespace UniSozluk.Controllers
         [HttpGet]
         public IActionResult EntryAdd()
         {
-            //var user = usm.TGetById(1);
-            //var university = um.GetUniversityByUser(user);
+            //var Person = usm.TGetById(1);
+            //var university = um.GetUniversityByPerson(Person);
             //ViewBag.u = university;
 
-            var user = usm.GetUserWithUniversityByID(1);
-            ViewBag.university = user.Departmant.University.UniversityName.ToString();
+            var Person = usm.GetPersonWithUniversityByID(1);
+            ViewBag.university = Person.Departmant.University.UniversityName.ToString();
 
 
-            List<SelectListItem> depValue = ((List<SelectListItem>)(from x in dm.GetListByUniversity(user.Departmant.University.UniversityID)
+            List<SelectListItem> depValue = ((List<SelectListItem>)(from x in dm.GetListByUniversity(Person.Departmant.University.UniversityID) //universityıd
                                                                     select new SelectListItem
                                                                     {
                                                                         Text = x.DepartmantName,
@@ -97,7 +114,7 @@ namespace UniSozluk.Controllers
                                                                     }).ToList());
             ViewBag.depValue = depValue;
 
-            List<SelectListItem> depValue2 = ((List<SelectListItem>)(from x in usm.GetUserListWithUniversityByID(1)
+            List<SelectListItem> depValue2 = ((List<SelectListItem>)(from x in usm.GetPersonListWithUniversityByID(1) //personıd
                                                                      select new SelectListItem
                                                                      {
                                                                          Text = x.Departmant.University.UniversityName,
@@ -113,6 +130,10 @@ namespace UniSozluk.Controllers
         [HttpPost]
         public IActionResult EntryAdd(Entry e)
         {
+            var username = User.Identity.Name;
+            var usermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
+            var personID = context.Persons.Where(x => x.PersonMail == usermail).Select(y => y.PersonID).FirstOrDefault();
+
             EntryValidation ev = new EntryValidation();
             ValidationResult result = ev.Validate(e);
 
@@ -120,7 +141,7 @@ namespace UniSozluk.Controllers
             {
                 e.EntryStatus = true;
                 e.EntryCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                e.UserID = 1;
+                e.PersonID = personID;
                 em.TAdd(e);
                 return RedirectToAction("EntryListAll", "Entry");
             }

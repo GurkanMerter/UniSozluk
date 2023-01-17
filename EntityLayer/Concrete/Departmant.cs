@@ -14,7 +14,7 @@ namespace EntityLayer.Concrete
         public int? UniversityID { get; set; }
         public University University { get; set; }
         public List<Entry> Entries { get; set; }
-        public List<User> Users { get; set; }
+        public List<Person> Persons { get; set; }
 
     }
 }

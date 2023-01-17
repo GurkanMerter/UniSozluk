@@ -1,50 +1,50 @@
 ﻿@using EntityLayer.Concrete
-@model User
+@model Person
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="container ">
-    <form class="user">
+    <form class="Person">
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <label> Universitemdeki Entry Sayısı:</label>
-                <input type="text" class="form-control form-control-user" value=@ViewBag.universityEntryCount disabled="disabled">
+                <input type="text" class="form-control form-control-Person" value=@ViewBag.universityEntryCount disabled="disabled">
             </div>
             <div class="col-sm-6">
                 <label>Entry Sayım:</label>
-                <input type="text" class="form-control form-control-user" value=@ViewBag.userEntryCount readonly="readonly">
+                <input type="text" class="form-control form-control-Person" value=@ViewBag.PersonEntryCount readonly="readonly">
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <label> Ad soyad:</label>
-                <input type="text" class="form-control form-control-user" value="@Model.UserFirstName @Model.UserLastName" disabled="disabled">
+                <input type="text" class="form-control form-control-Person" value="@Model.PersonFirstName @Model.PersonLastName" disabled="disabled">
             </div>
             <div class="col-sm-6">
                 <label>Nickname:</label>
-                <input type="text" class="form-control form-control-user" value=@Model.UserNickName readonly="readonly">
+                <input type="text" class="form-control form-control-Person" value=@Model.PersonNickName readonly="readonly">
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <label>Tel no:</label>
-                <input type="text" class="form-control form-control-user" value="@Model.UserTelNo" disabled="disabled">
+                <input type="text" class="form-control form-control-Person" value="@Model.PersonTelNo" disabled="disabled">
             </div>
             <div class="col-sm-6">
                 <label>Mail:</label>
-                <input type="text" class="form-control form-control-user" value=@Model.UserMail readonly="readonly">
+                <input type="text" class="form-control form-control-Person" value=@Model.PersonMail readonly="readonly">
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <label>Okul:</label>
-                <input type="text" class="form-control form-control-user" value="@Model.Departmant.University.UniversityName" disabled="disabled">
+                <input type="text" class="form-control form-control-Person" value="@Model.Departmant.University.UniversityName" disabled="disabled">
             </div>
             <div class="col-sm-6">
                 <label>Bölüm:</label>
-                <input type="text" class="form-control form-control-user" value=@Model.Departmant.DepartmantName readonly="readonly">
+                <input type="text" class="form-control form-control-Person" value=@Model.Departmant.DepartmantName readonly="readonly">
             </div>
         </div>
 

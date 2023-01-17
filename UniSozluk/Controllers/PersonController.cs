@@ -1,35 +1,38 @@
 ﻿using BussinesLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using X.PagedList;
 
-namespace UniSozluk.Areas.Admin.Controllers
+namespace UniSozluk.Controllers
 {
     [AllowAnonymous]
-    [Area("Admin")]
-    public class UserController : Controller
+    public class PersonController : Controller
     {
-        UserManager usm = new UserManager(new EfUserRepository());
+        PersonManager usm = new PersonManager(new EfPersonRepository());
         DepartmantManager dm = new DepartmantManager(new EfDepartmantRepository());
-        public IActionResult Index(int page = 1)
+        Context context = new Context();
+
+        [HttpGet]
+        public IActionResult Index(int id)
         {
-            var values = usm.GetUsersWithDepartmantAndEntries().ToPagedList(page, 25);
-            return View(values);
+            var value = usm.GetPersonWithDepartmantAndUniversity(id);
+            ViewBag.universityEntryCount = context.Entries.Where(x => x.Departmant.University.UniversityID == value.Departmant.University.UniversityID).Count();
+            ViewBag.PersonEntryCount = context.Entries.Where(x=>x.PersonID == id).Count();
+            return View(value);
         }
 
         [HttpGet]
-        public IActionResult UserEdit(int id)
+        public IActionResult PersonEdit(int id)
         {
-            var user = usm.GetUserWithUniversityByID(id);
-            
+            var Person = usm.GetPersonWithUniversityByID(id);
 
-            List<SelectListItem> DepartmantValue = (from x in dm.GetListByUniversityID((int)user.Departmant.UniversityID)
+
+            List<SelectListItem> DepartmantValue = (from x in dm.GetListByUniversityID((int)Person.Departmant.UniversityID)
                                                     select new SelectListItem
                                                     {
                                                         Text = x.DepartmantName,
@@ -38,24 +41,18 @@ namespace UniSozluk.Areas.Admin.Controllers
                                                     ).ToList();
             ViewBag.depValue = DepartmantValue;
 
-            var value = usm.GetUserWithUniversityByID(id);
-
-            return View(value);
+            return View(Person);
         }
 
         [HttpPost]
-        public IActionResult UserEdit(User user)
+        public IActionResult PersonEdit(Person Person)
         {
- 
-            usm.TUpdate(user);
+            usm.TUpdate(Person);
             return RedirectToAction("Index");
         }
 
-        public IActionResult UserDelete(int id)
-        {
-            var value = usm.TGetById(id);
-            usm.TDelete(value);
-            return RedirectToAction("Index");
-        }
+
+
+        
     }
 }
