@@ -159,6 +159,23 @@
 
                         </li>
 
+
+
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link" href="~/Register/Index">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Kayıt ol</span>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link" href="~/Login/Index">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Giriş Yap</span>
+                            </a>
+                        </li>
+
+
+
+
+
                         <!-- Nav Item - Alerts -->
                         <li class="nav-item dropdown no-arrow mx-1">
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
@@ -225,11 +242,11 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                  aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/User/Index/1">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Profil
                                 </a>
-                                <a class="dropdown-item" href="#">
+                                <a class="dropdown-item" href="/User/UserEdit/1">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Ayarlar
                                 </a>
@@ -249,7 +266,7 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                @RenderBody()
+                    @RenderBody()
 
                 </div>
                 <!-- /.container-fluid -->
@@ -295,7 +312,7 @@
             </div>
         </div>
     </div>
-   
+
     <!-- Bootstrap core JavaScript-->
     <script src="~/vendor/jquery/jquery.min.js"></script>
     <script src="~/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -6,51 +6,49 @@
 }
 
 <div class="container ">
-    <div class="row">
-        <div class="card mb-4 bg-gradient-success col-6">
-            <div class="card-body text-white">
-                @ViewBag.universityEntryCount
+    <form class="user">
+        <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <label> Universitemdeki Entry Sayısı:</label>
+                <input type="text" class="form-control form-control-user" value=@ViewBag.universityEntryCount disabled="disabled">
             </div>
-        </div><div class="card mb-4 bg-gradient-success col-6 ">
-            <div class="card-body text-white">
-                @ViewBag.userEntryCount
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="card mb-4 bg-gradient-success col-6">
-            <div class="card-body text-white">
-                @Model.UserFirstName @Model.UserLastName
-            </div>
-        </div><div class="card mb-4 bg-gradient-success col-6 ">
-            <div class="card-body text-white">
-                @Model.UserNickName
+            <div class="col-sm-6">
+                <label>Entry Sayım:</label>
+                <input type="text" class="form-control form-control-user" value=@ViewBag.userEntryCount readonly="readonly">
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="card mb-4 bg-gradient-success col-6">
-            <div class="card-body text-white">
-                @Model.UserTelNo
+        <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <label> Ad soyad:</label>
+                <input type="text" class="form-control form-control-user" value="@Model.UserFirstName @Model.UserLastName" disabled="disabled">
             </div>
-        </div><div class="card mb-4 bg-gradient-success col-6 ">
-            <div class="card-body text-white">
-                @Model.UserMail
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="card mb-4 bg-gradient-success col-6">
-            <div class="card-body text-white">
-                @Model.Departmant.DepartmantName
+            <div class="col-sm-6">
+                <label>Nickname:</label>
+                <input type="text" class="form-control form-control-user" value=@Model.UserNickName readonly="readonly">
             </div>
         </div>
-        <div class="card mb-4 bg-gradient-success col-6 ">
-            <div class="card-body text-white">
-                @Model.Departmant.University.UniversityName
+        <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <label>Tel no:</label>
+                <input type="text" class="form-control form-control-user" value="@Model.UserTelNo" disabled="disabled">
+            </div>
+            <div class="col-sm-6">
+                <label>Mail:</label>
+                <input type="text" class="form-control form-control-user" value=@Model.UserMail readonly="readonly">
             </div>
         </div>
-    </div>
+        <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <label>Okul:</label>
+                <input type="text" class="form-control form-control-user" value="@Model.Departmant.University.UniversityName" disabled="disabled">
+            </div>
+            <div class="col-sm-6">
+                <label>Bölüm:</label>
+                <input type="text" class="form-control form-control-user" value=@Model.Departmant.DepartmantName readonly="readonly">
+            </div>
+        </div>
+
+    </form>
 
 </div>
 

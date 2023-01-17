@@ -1,0 +1,72 @@
+﻿@using EntityLayer.Concrete
+@model User
+@{
+    ViewData["Title"] = "UserEdit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container ">
+    @using (Html.BeginForm("UserEdit", "User", FormMethod.Post))
+    {
+        <div class="form-group row">
+            <div class="form-group">
+                @Html.TextBoxFor(x=>x.UserID,new{@class="form-control", @hidden="true"})
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(x=>x.UserStatus,new {@class = "form-control", @hidden="true"})
+
+            </div>
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <label> Ad:</label>
+                @Html.TextBoxFor(x=>x.UserFirstName,new {@class = "form-control"})
+                @* <input type="text" class="form-control form-control-user" value="@Model.UserFirstName">*@
+            </div>
+            <div class="col-sm-6">
+                <label>SoyAd:</label>
+                @Html.TextBoxFor(x=>x.UserLastName,new {@class = "form-control"})
+                @*<input type="text" class="form-control form-control-user" value=@Model.UserLastName>*@
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <label>Nickname:</label>
+                @Html.TextBoxFor(x=>x.UserNickName,new {@class = "form-control"})
+                @*<input type="text" class="form-control form-control-user" value=@Model.UserNickName>*@
+            </div>
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <label>Tel no:</label>
+                @Html.TextBoxFor(x=>x.UserTelNo,new {@class = "form-control"})
+                @*<input type="number" class="form-control form-control-user" value="@Model.UserTelNo">*@
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <label>Mail:</label>
+                @Html.TextBoxFor(x=>x.UserMail,new {@class = "form-control"})
+
+                @*<input type="email" class="form-control form-control-user" value=@Model.UserMail>*@
+            </div>
+            <div class="col-sm-6">
+                <label>Şifre:</label>
+                @Html.TextBoxFor(x=>x.UserPassword,new {@class = "form-control"})
+                @*<input type="password" class="form-control form-control-user" value=@Model.UserPassword>*@
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <label>Okul:</label>
+                @Html.TextBoxFor(x=>x.Departmant.University.UniversityName,new {@class = "form-control", @readonly="readonly"})
+                @*<input type="text" class="form-control form-control-user" value="@Model.Departmant.University.UniversityName">*@
+            </div>
+            <div class="col-sm-6 " style="border-radius:30px">
+                <label>Bölüm:</label>
+                @Html.DropDownListFor(x=>x.DepartmantID,(List<SelectListItem>)ViewBag.depValue,new{@class = "form-control"})
+            </div>
+        </div>
+        <button class="btn btn-primary btn-user btn-block" type="submit">
+            Güncelle
+        </button>
+
+    }
+
+</div>
