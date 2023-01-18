@@ -35,7 +35,11 @@ namespace UniSozluk.Controllers
 
                                                                     }).ToList());
             ViewBag.depValue = uniValue;
-            return View();
+
+            var a = new UserRegisterViewModel();
+            a.Universities = unim.GetList();
+
+            return View(a);
         }
 
         [HttpPost]
@@ -50,6 +54,7 @@ namespace UniSozluk.Controllers
                     FirstName = u.FirsName,
                     LastName = u.LastName,
                     University = u.University,
+
                 };
                 var result = await _userManager.CreateAsync(user, u.Password);
 

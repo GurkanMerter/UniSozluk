@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using EntityLayer.Concrete;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace UniSozluk.Models
 {
@@ -21,8 +23,18 @@ namespace UniSozluk.Models
         public string NickName { get; set; }
 
         [Display(Name = "Üniversite")]
-        [Required(ErrorMessage = "Üniversitenizi Seçiniz...")]
         public string University { get; set; }
+
+        //[Display(Name = "Bölüm")]
+        //[Required(ErrorMessage = "Bölümünüzü Seçiniz...")]
+        //public string Departmant { get; set; }
+
+        //----------------------------------------------------------
+
+        [Display(Name = "Üniversite")]
+        public List<University> Universities { get; set; }
+
+        //----------------------------------------------------------
 
         [Display(Name = "Şifre")]
         [Required(ErrorMessage = "Şifre Giriniz..")]
