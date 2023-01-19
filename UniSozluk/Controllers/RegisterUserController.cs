@@ -50,11 +50,11 @@ namespace UniSozluk.Controllers
                 AppUser user = new AppUser()
                 {
                     Email = u.Mail,
-                    UserName = u.NickName, 
+                    UserName = u.NickName,
                     FirstName = u.FirsName,
                     LastName = u.LastName,
                     University = u.University,
-
+                    Departmant = 5.ToString(),
                 };
                 var result = await _userManager.CreateAsync(user, u.Password);
 
