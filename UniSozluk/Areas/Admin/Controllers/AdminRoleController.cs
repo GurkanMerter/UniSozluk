@@ -59,7 +59,7 @@ namespace UniSozluk.Areas.Admin.Controllers
             }
             return View(model);
         }
-
+        //
         [HttpGet]
         public IActionResult EditRole(int id)
         {
