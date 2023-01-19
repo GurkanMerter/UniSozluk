@@ -12,5 +12,6 @@ namespace EntityLayer.Concrete
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string University { get; set; }
+        public string Departmant { get; set; }
     }
 }

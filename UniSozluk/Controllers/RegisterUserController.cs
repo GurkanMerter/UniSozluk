@@ -27,14 +27,14 @@ namespace UniSozluk.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            List<SelectListItem> uniValue = ((List<SelectListItem>)(from x in unim.GetList() //universityıd
-                                                                    select new SelectListItem
-                                                                    {
-                                                                        Text = x.UniversityName,
-                                                                        Value = x.UniversityID.ToString(),
+            //List<SelectListItem> uniValue = ((List<SelectListItem>)(from x in unim.GetList() //universityıd
+            //                                                        select new SelectListItem
+            //                                                        {
+            //                                                            Text = x.UniversityName,
+            //                                                            Value = x.UniversityID.ToString(),
 
-                                                                    }).ToList());
-            ViewBag.depValue = uniValue;
+            //                                                        }).ToList());
+            //ViewBag.depValue = uniValue;
 
             var a = new UserRegisterViewModel();
             a.Universities = unim.GetList();

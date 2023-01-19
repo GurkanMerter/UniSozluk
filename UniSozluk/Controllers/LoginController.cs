@@ -50,34 +50,15 @@ namespace UniSozluk.Controllers
             return View();
         }
 
+        public async Task<ActionResult> LogOut()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Login");
+        }
+        public IActionResult AccesDenied()
+        {
+            return View();
+        }
 
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> Index(Person Person)
-        //{
-        //    Context context = new Context();
-        //    var check = context.Persons.FirstOrDefault(x=>x.PersonMail==Person.PersonMail && x.PersonPassword==Person.PersonPassword);
-        //    if (check != null)
-        //    {
-        //        //Talep oluşturacağız
-        //        var claims = new List<Claim>
-        //        {
-        //            new Claim(ClaimTypes.Name,Person.PersonMail)
-        //        };
-        //        var Personidentity = new ClaimsIdentity(claims,"a");
-        //        ClaimsPrincipal principal = new ClaimsPrincipal(Personidentity);
-        //        await HttpContext.SignInAsync(principal);
-
-        //        //HttpContext.Session.SetString("PersonMail", Person.PersonMail);         //session seviyesinde 
-
-        //        return RedirectToAction("MainPage", "Entry");
-        //    }
-        //    else
-        //    {
-        //        return View();
-        //    }
-
-
-        //}
     }
 }

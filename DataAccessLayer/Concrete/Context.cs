@@ -6,10 +6,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
-
 namespace DataAccessLayer.Concrete
 {
-    public class Context : IdentityDbContext<AppUser,AppRole,int>
+    public class Context : IdentityDbContext<AppUser, AppRole, int>
     {
         //cons. metod; || override olarak da tanımlama yapabiliriz;++
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
