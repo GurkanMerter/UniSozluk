@@ -10,8 +10,9 @@ using X.PagedList;
 
 namespace UniSozluk.Areas.Admin.Controllers
 {
-    [AllowAnonymous]
+    
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class UniversityController : Controller
     {
         UniversityManager um = new UniversityManager(new EfUniversityRepository());

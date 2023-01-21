@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "BussinesLayer": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:63831;http://localhost:63833"
+    }
+  }
+}

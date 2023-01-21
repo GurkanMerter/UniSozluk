@@ -10,8 +10,9 @@ using System.Linq;
 
 namespace UniSozluk.Areas.Admin.Controllers
 {
-    [AllowAnonymous]
+    
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class EntryController : Controller
     {
         EntryManager em = new EntryManager(new EfEntryRepository());

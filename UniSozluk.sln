@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreLayer", "CoreLayer\Core
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniSozluk", "UniSozluk\UniSozluk.csproj", "{3A657D61-7070-46F8-B1EB-72ABC0277771}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniSozlukAPI", "UniSozlukAPI\UniSozlukAPI.csproj", "{10E6606B-FEC8-4001-8C5A-EE97245FE2CE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniSozlukAPI", "UniSozlukAPI\UniSozlukAPI.csproj", "{10E6606B-FEC8-4001-8C5A-EE97245FE2CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniSozluk-JWT", "UniSozluk-JWT\UniSozluk-JWT.csproj", "{59321507-B208-420D-9FF2-9573982EC516}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{10E6606B-FEC8-4001-8C5A-EE97245FE2CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10E6606B-FEC8-4001-8C5A-EE97245FE2CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10E6606B-FEC8-4001-8C5A-EE97245FE2CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59321507-B208-420D-9FF2-9573982EC516}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59321507-B208-420D-9FF2-9573982EC516}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59321507-B208-420D-9FF2-9573982EC516}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59321507-B208-420D-9FF2-9573982EC516}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

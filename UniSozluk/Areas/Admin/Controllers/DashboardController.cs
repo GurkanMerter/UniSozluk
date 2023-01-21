@@ -6,8 +6,9 @@ using System.Linq;
 
 namespace UniSozluk.Areas.Admin.Controllers
 {
-    [AllowAnonymous]
+    
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class DashboardController : Controller
     {
         EntryManager em = new EntryManager(new EfEntryRepository());

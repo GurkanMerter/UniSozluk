@@ -54,7 +54,7 @@ namespace UniSozluk.Controllers
                     FirstName = u.FirsName,
                     LastName = u.LastName,
                     University = u.University,
-                    Departmant = 5.ToString(),
+                    Departmant = u.DepartmantID,
                 };
                 var result = await _userManager.CreateAsync(user, u.Password);
 
@@ -83,6 +83,7 @@ namespace UniSozluk.Controllers
                   Value = x.DepartmantID.ToString(),
                   Text = x.DepartmantName.ToString()
               }).ToList();
+
 
             return Json(Departmant);
         }

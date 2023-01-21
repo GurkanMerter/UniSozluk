@@ -13,22 +13,29 @@ using UniSozluk.Models;
 
 namespace UniSozluk.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
         private readonly SignInManager<AppUser> _signInManager;
 
-        public LoginController(SignInManager<AppUser> signInManager)
+        private readonly UserManager<AppUser> _userManager;
+
+        private readonly RoleManager<AppRole> _roleManager;
+
+        public LoginController(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
         {
             _signInManager = signInManager;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
-        [AllowAnonymous]
+        
         public IActionResult Index()
         {
             return View();
         }
 
-
+        
         [HttpPost]
         public async Task<IActionResult> Index(UserLoginViewModel user)
         {
@@ -55,10 +62,12 @@ namespace UniSozluk.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Login");
         }
-        public IActionResult AccesDenied()
+        public IActionResult AccessDenied()
         {
             return View();
         }
+
+        
 
     }
 }

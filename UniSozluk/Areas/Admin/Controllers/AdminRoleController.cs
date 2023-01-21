@@ -11,8 +11,9 @@ using X.PagedList;
 
 namespace UniSozluk.Areas.Admin.Controllers
 {
-    [AllowAnonymous]
+    
     [Area("Admin")]
+    [Authorize(Roles ="Admin")]
     public class AdminRoleController : Controller
     {
 
@@ -25,7 +26,7 @@ namespace UniSozluk.Areas.Admin.Controllers
             _roleManager = roleManager;
             _userManager = userManager;
         }
-
+        
         public IActionResult Index()
         {
             var values = _roleManager.Roles.ToList() ;

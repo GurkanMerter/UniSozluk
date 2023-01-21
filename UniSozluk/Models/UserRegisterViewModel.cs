@@ -25,9 +25,8 @@ namespace UniSozluk.Models
         [Display(Name = "Üniversite")]
         public string University { get; set; }
 
-        //[Display(Name = "Bölüm")]
-        //[Required(ErrorMessage = "Bölümünüzü Seçiniz...")]
-        //public string Departmant { get; set; }
+        [Display(Name = "Bölüm")]
+        public string DepartmantID { get; set; }
 
         //----------------------------------------------------------
 

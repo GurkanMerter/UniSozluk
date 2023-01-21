@@ -11,8 +11,9 @@ using X.PagedList;
 
 namespace UniSozluk.Areas.Admin.Controllers
 {
-    [AllowAnonymous]
+    
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class PersonController : Controller
     {
         PersonManager usm = new PersonManager(new EfPersonRepository());

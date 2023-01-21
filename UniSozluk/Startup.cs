@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.Configuration;
@@ -35,9 +36,8 @@ namespace UniSozluk
                 x.Password.RequireNonAlphanumeric = false;
 
             }).AddEntityFrameworkStores<Context>();
-
-            services.AddControllersWithViews();
             services.AddSession();
+            services.AddControllersWithViews();
             services.AddMvc(Config =>
             {
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
@@ -56,7 +56,7 @@ namespace UniSozluk
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(100);
                 options.LoginPath = "/Login/Index/";
                 options.SlidingExpiration = true;
-
+                options.AccessDeniedPath = new PathString("/Login/AccessDenied/");
             }
             ) ;
         }
@@ -74,6 +74,8 @@ namespace UniSozluk
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseStatusCodePagesWithReExecute("/Error/Index","?code={0}");
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
