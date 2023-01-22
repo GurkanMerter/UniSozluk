@@ -78,7 +78,7 @@ namespace DataAccessLayer.EntityFramework
         {
             using (var c = new Context())
             {
-                return c.Entries.Include(x => x.Departmant.University).Where(x=>x.PersonID == id).ToList();
+                return c.Entries.Include(x => x.Departmant.University).Where(x=>x.Persons.PersonID == id).ToList();
 
             }
         }

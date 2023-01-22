@@ -9,5 +9,6 @@ namespace BussinesLayer.Abstract
 {
     public interface IUserService:IGenericService<AppUser>
     {
+        List<AppUser> GetUserListWithUniversityByID(int id);
     }
 }

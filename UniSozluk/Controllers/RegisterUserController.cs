@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,7 +19,8 @@ namespace UniSozluk.Controllers
         private readonly UserManager<AppUser> _userManager;
         DepartmantManager dm = new DepartmantManager(new EfDepartmantRepository());
         UniversityManager unim = new UniversityManager(new EfUniversityRepository());
-
+        PersonManager pm = new PersonManager(new EfPersonRepository());
+        
         public RegisterUserController(UserManager<AppUser> userManager)
         {
             _userManager = userManager;
@@ -47,6 +49,21 @@ namespace UniSozluk.Controllers
         {
             if (ModelState.IsValid)
             {
+                Person person = new Person
+                {
+                    PersonFirstName=u.FirsName,
+                    PersonLastName=u.LastName,
+                    PersonMail=u.Mail,
+                    DepartmantID=Convert.ToInt32(u.DepartmantID),
+                    PersonNickName=u.NickName,
+                    PersonPassword=u.Password,
+                    PersonStatus=true,
+                    PersonTelNo="5554441256"
+
+                };
+                pm.TAdd(person);
+                
+
                 AppUser user = new AppUser()
                 {
                     Email = u.Mail,
@@ -54,7 +71,7 @@ namespace UniSozluk.Controllers
                     FirstName = u.FirsName,
                     LastName = u.LastName,
                     University = u.University,
-                    Departmant = u.DepartmantID,
+                    Departmant = u.DepartmantID ,
                 };
                 var result = await _userManager.CreateAsync(user, u.Password);
 

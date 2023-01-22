@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniSozluk", "UniSozluk\UniS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniSozlukAPI", "UniSozlukAPI\UniSozlukAPI.csproj", "{10E6606B-FEC8-4001-8C5A-EE97245FE2CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniSozluk-JWT", "UniSozluk-JWT\UniSozluk-JWT.csproj", "{59321507-B208-420D-9FF2-9573982EC516}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniSozluk-JWT", "UniSozluk-JWT\UniSozluk-JWT.csproj", "{59321507-B208-420D-9FF2-9573982EC516}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

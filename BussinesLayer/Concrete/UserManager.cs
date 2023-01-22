@@ -12,6 +12,7 @@ namespace BussinesLayer.Concrete
     public class UserManager : IUserService
     {
         IUserDal _userdal;
+        
 
         public UserManager(IUserDal userdal)
         {
@@ -21,6 +22,16 @@ namespace BussinesLayer.Concrete
         public List<AppUser> GetList()
         {
             return _userdal.GetListAll();
+        }
+
+        public object GetPersonListWithUniversityByID(int personID)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<AppUser> GetUserListWithUniversityByID(int id)
+        {
+            return _userdal.GetUserListWithUniversityByID(id);
         }
 
         public void TAdd(AppUser t)

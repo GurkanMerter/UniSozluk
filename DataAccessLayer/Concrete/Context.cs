@@ -10,6 +10,15 @@ namespace DataAccessLayer.Concrete
 {
     public class Context : IdentityDbContext<AppUser, AppRole, int>
     {
+        public Context()
+        {
+
+        }
+
+        public Context(DbContextOptions<Context> options):base(options)
+        {
+
+        }
         //cons. metod; || override olarak da tanımlama yapabiliriz;++
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

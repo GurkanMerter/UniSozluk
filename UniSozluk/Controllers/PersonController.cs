@@ -31,14 +31,17 @@ namespace UniSozluk.Controllers
         [Authorize]
         public IActionResult Index(int id)
         {
-            var usermail = User.Identity.Name;
-            ViewBag.val = usermail;
+
+            var username = User.Identity.Name;
+            var usermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
+            var personID = context.Users.Where(x => x.Email == usermail).Select(y => y.Id).FirstOrDefault();
+            ViewBag.val = username;
             var personName = context.Persons.Where(x => x.PersonMail == usermail).Select(y => y.PersonFirstName).FirstOrDefault();
             ViewBag.name = personName;
 
             var value = pm.GetPersonWithDepartmantAndUniversity(id);
             ViewBag.universityEntryCount = context.Entries.Where(x => x.Departmant.University.UniversityID == value.Departmant.University.UniversityID).Count();
-            ViewBag.PersonEntryCount = context.Entries.Where(x => x.PersonID == id).Count();
+           // ViewBag.PersonEntryCount = context.Entries.Where(x => x.app == id).Count();
             return View(value);
         }
 

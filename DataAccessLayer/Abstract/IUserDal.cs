@@ -9,6 +9,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IUserDal:IGenericDal<AppUser>
     {
-
+        List<AppUser> GetUserListWithUniversityByID(int id);
     }
 }

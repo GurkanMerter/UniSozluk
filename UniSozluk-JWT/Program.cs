@@ -38,14 +38,12 @@ builder.Services.AddAuthentication(x => {
 } );
 builder.Services.AddAuthorization();
 
-//builder.Services.AddDbContext<Context>(options =>
-//{
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
+builder.Services.AddDbContext<Context>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
 
-//});
-
+});
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>().AddDefaultTokenProviders();
-
 
 var app = builder.Build();
 

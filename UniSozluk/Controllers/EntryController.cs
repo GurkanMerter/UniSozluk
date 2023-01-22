@@ -10,6 +10,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using DataAccessLayer.Concrete;
+using System.Configuration;
 
 namespace UniSozluk.Controllers
 {
@@ -20,7 +21,8 @@ namespace UniSozluk.Controllers
         EntryManager em = new EntryManager(new EfEntryRepository());
         UniversityManager um = new UniversityManager(new EfUniversityRepository());
         DepartmantManager dm = new DepartmantManager(new EfDepartmantRepository());
-        PersonManager usm = new PersonManager(new EfPersonRepository());
+        PersonManager pm = new PersonManager(new EfPersonRepository());
+        UserManager userManager = new UserManager(new EfUserRepository());
         Context context = new Context();
 
 
@@ -30,7 +32,7 @@ namespace UniSozluk.Controllers
             var username = User.Identity.Name;
             ViewBag.v = username;
             var usermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
-            var personid = context.Persons.Where(x => x.PersonMail == usermail).Select(y => y.PersonID).FirstOrDefault();
+            var personid = context.Users.Where(x => x.Email == usermail).Select(y => y.Id).FirstOrDefault();
             var values = em.GetEntryListWithDepartmant();
 
             return View(values);
@@ -38,7 +40,11 @@ namespace UniSozluk.Controllers
 
         public IActionResult EntryListAll()//Personin tüm entryleri
         {
-            var values = em.GetListWithUniversityByPerson(1);
+            var username = User.Identity.Name;
+            var usermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
+            var personID = context.Users.Where(x => x.Email == usermail).Select(y => y.Id).FirstOrDefault();
+
+            var values = em.GetListWithUniversityByPerson(personID);
             return View(values);
         }
 
@@ -77,7 +83,7 @@ namespace UniSozluk.Controllers
         {
             var username = User.Identity.Name;
             var usermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
-            var personID = context.Persons.Where(x => x.PersonMail == usermail).Select(y => y.PersonID).FirstOrDefault();
+            var personID = context.Users.Where(x => x.Email == usermail).Select(y => y.Id).FirstOrDefault();
             //var personUni = context.Persons.Where(x => x.PersonID == personID).Select(y => y.Departmant.UniversityID).FirstOrDefault().Value;
 
             entry.EntryCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
@@ -101,11 +107,15 @@ namespace UniSozluk.Controllers
             //var university = um.GetUniversityByPerson(Person);
             //ViewBag.u = university;
 
-            var Person = usm.GetPersonWithUniversityByID(1);
-            ViewBag.university = Person.Departmant.University.UniversityName.ToString();
+           
+            var username = User.Identity.Name;
+            var usermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
+            var personID = context.Users.Where(x => x.Email == usermail).Select(y => y.Id).FirstOrDefault();
+            var universityID = context.Users.Where(x=> x.Email==usermail).Select(y=>y.University).FirstOrDefault();
+            //var Person = usm.GetPersonWithUniversityByID(personID);
+            //ViewBag.university = Person.Departmant.University.UniversityName.ToString();
 
-
-            List<SelectListItem> depValue = ((List<SelectListItem>)(from x in dm.GetListByUniversity(Person.Departmant.University.UniversityID) //universityıd
+            List<SelectListItem> depValue = ((List<SelectListItem>)(from x in dm.GetListByUniversity(Convert.ToInt32(universityID)) //universityıd
                                                                     select new SelectListItem
                                                                     {
                                                                         Text = x.DepartmantName,
@@ -114,11 +124,11 @@ namespace UniSozluk.Controllers
                                                                     }).ToList());
             ViewBag.depValue = depValue;
 
-            List<SelectListItem> depValue2 = ((List<SelectListItem>)(from x in usm.GetPersonListWithUniversityByID(1) //personıd
+            List<SelectListItem> depValue2 = ((List<SelectListItem>)(from x in userManager.GetUserListWithUniversityByID(personID) //personıd
                                                                      select new SelectListItem
                                                                      {
-                                                                         Text = x.Departmant.University.UniversityName,
-                                                                         Value = x.DepartmantID.ToString(),
+                                                                         Text = um.TGetById(Convert.ToInt32(universityID)).UniversityName,
+                                                                         Value = x.University.ToString(),
 
                                                                      }).ToList());
 
@@ -132,7 +142,7 @@ namespace UniSozluk.Controllers
         {
             var username = User.Identity.Name;
             var usermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
-            var personID = context.Persons.Where(x => x.PersonMail == usermail).Select(y => y.PersonID).FirstOrDefault();
+            var personID = context.Users.Where(x => x.Email == usermail).Select(y => y.Id).FirstOrDefault();
 
             EntryValidation ev = new EntryValidation();
             ValidationResult result = ev.Validate(e);
