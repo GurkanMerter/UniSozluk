@@ -49,35 +49,36 @@ namespace UniSozluk.Controllers
         {
             if (ModelState.IsValid)
             {
-                Person person = new Person
-                {
-                    PersonFirstName=u.FirsName,
-                    PersonLastName=u.LastName,
-                    PersonMail=u.Mail,
-                    DepartmantID=Convert.ToInt32(u.DepartmantID),
-                    PersonNickName=u.NickName,
-                    PersonPassword=u.Password,
-                    PersonStatus=true,
-                    PersonTelNo="5554441256"
-
-                };
-                pm.TAdd(person);
-                
-
                 AppUser user = new AppUser()
                 {
                     Email = u.Mail,
                     UserName = u.NickName,
                     FirstName = u.FirsName,
                     LastName = u.LastName,
-                    University = u.University,
-                    Departmant = u.DepartmantID ,
+                    University = u.University.ToString(),
+                    Departmant = u.DepartmantID.ToString() ,
                 };
+
+                
+
                 var result = await _userManager.CreateAsync(user, u.Password);
 
 
                 if (result.Succeeded)
                 {
+                    Person person = new Person
+                    {
+                        PersonFirstName = u.FirsName,
+                        PersonLastName = u.LastName,
+                        PersonMail = u.Mail,
+                        DepartmantID = Convert.ToInt32(u.DepartmantID),
+                        PersonNickName = u.NickName,
+                        PersonPassword = u.Password,
+                        PersonStatus = true,
+                        PersonTelNo = "5554441256"
+
+                    };
+                    pm.TAdd(person);
                     return RedirectToAction("Index", "Login");
                 }
                 else
@@ -86,6 +87,8 @@ namespace UniSozluk.Controllers
                     {
                         ModelState.AddModelError("", item.Description);
                     }
+
+                    return View(ModelState.ToString());  // burayı da yap
                 }
             }
             return View(u);

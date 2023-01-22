@@ -23,10 +23,10 @@ namespace UniSozluk.Models
         public string NickName { get; set; }
 
         [Display(Name = "Üniversite")]
-        public string University { get; set; }
+        public int University { get; set; }
 
         [Display(Name = "Bölüm")]
-        public string DepartmantID { get; set; }
+        public int DepartmantID { get; set; }
 
         //----------------------------------------------------------
 

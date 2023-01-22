@@ -4,19 +4,6 @@
     Layout = null;
 }
 
-<script type="text/javascript">
-    function formSubmit() {
-        var form_data = $("formid").serilaze();
-
-        $.ajax({
-            type: 'POST',
-            url: '/RegisterUser/Index',
-            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-            data: form_data
-        });
-
-    }
-</script>
 
 <!DOCTYPE html>
 <html>
