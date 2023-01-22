@@ -6,7 +6,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "ancmHostingModel": "InProcess"
+      "ancmHostingModel": "InProcess",
+      "nativeDebugging": true
     },
     "UniSozluk": {
       "commandName": "Project",

@@ -94,28 +94,28 @@ namespace UniSozluk_JWT.Controllers
         }
 
 
-        private string GenerateJwtToken(AppUser user)
-        {
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_config.GetSection("JWT:Key").Value);
+        //private string GenerateJwtToken(AppUser user)
+        //{
+        //    var tokenHandler = new JwtSecurityTokenHandler();
+        //    var key = Encoding.ASCII.GetBytes(_config.GetSection("JWT:Key").Value);
 
-            var tokenDescriptor = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
-                    new Claim(ClaimTypes.Name,user.UserName)
+        //    var tokenDescriptor = new SecurityTokenDescriptor
+        //    {
+        //        Subject = new ClaimsIdentity(new Claim[]
+        //        {
+        //            new Claim(ClaimTypes.NameIdentifier,user.Id.ToString()),
+        //            new Claim(ClaimTypes.Name,user.UserName)
 
-                }),
-                Expires= DateTime.UtcNow.AddDays(1),  //token bir gün geçerli
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),SecurityAlgorithms.HmacSha256Signature),
+        //        }),
+        //        Expires= DateTime.UtcNow.AddDays(1),  //token bir gün geçerli
+        //        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),SecurityAlgorithms.HmacSha256Signature),
 
-            };
+        //    };
 
-            var token = tokenHandler.CreateToken(tokenDescriptor);
+        //    var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return tokenHandler.WriteToken(token);
-        }
+        //    return tokenHandler.WriteToken(token);
+        //}
 
         private JwtSecurityToken GetToken(List<Claim> authClaims)
         {
