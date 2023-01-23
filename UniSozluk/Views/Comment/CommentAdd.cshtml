@@ -1,13 +1,12 @@
 ﻿@using EntityLayer.Concrete
-@model IEnumerable<Entry>
-@foreach (var item in Model)
-{
+@model Entry
+
     <div class="container mt-3">
         <div class="">
-            <form action="/Comment/CommentAdd/@item.EntryID" method="post">
+            <form action="/Comment/CommentAdd/@Model.EntryID" method="post">
                 <textarea class="form-control" name="CommentContent" placeholder="Yorumunuz..." required=""></textarea>
                 <button type="submit" class="btn btn-success submit mt-3 mb-3 float-right">Yorum Yap..</button>
             </form>
         </div>
     </div>
-}
+

@@ -1,5 +1,5 @@
 ﻿@using EntityLayer.Concrete
-@model IEnumerable<EntityLayer.Concrete.Entry>
+@model Entry
 @{
     ViewData["Title"] = "EntryReadAll";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,13 +8,12 @@
 <div class="row">
 
     <!-- Area Chart -->
-    <div class="col-xl-8 col-lg-7">
-         @foreach (var item in Model)
-            {
-        <div class="card shadow mb-4">
+    <div class="col-xl-9 col-lg-8">
+         
+            <div class="card shadow mb-4 bg-gray-400">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">@**@ </h6>
+                <h6 class="m-0 font-weight-bold " style="color:purple"> @Model.Departmant.University.UniversityName - @Model.Departmant.DepartmantName </h6>
                 <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -28,27 +27,27 @@
                 </div>
             </div>
             <!-- Card Body -->
-            <div class="card-body">
+            <div class="card-body" style="color:saddlebrown">
                
-                 @item.EntryContent
+                 @Model.EntryContent
                 
             </div>
             <hr />
             <div class="mb-3">
                 <div class="row container">
                     <div class="col-7">
-                        <a href="#">
-                            <i class="far fa-calendar-alt"></i> @*@(((DateTime)item.EntryCreateDate).ToString("dd-MMM-yyyy"))*@
-                        </a><a href="#">
+                        <a href="#" style="color:black">
+                            <i class="far fa-calendar-alt"></i> @(((DateTime)Model.EntryCreateDate).ToString("dd-MMM-yyyy"))
+                        </a><a href="#"style="color:black">
                             <i class="far fa-thumbs-up pl-2"></i> 201 Likes
-                        </a><a href="#">
+                        </a><a href="#" style="color:black">
                             <i class="far fa-comment pl-2"></i> 15 Comments
                         </a>
                     </div>
 
-                    <div class="col-5 text-right">
-                        @*@item.Persons.PersonID*@
-                    </div>
+                    @*<div class="col-5 text-right">
+                        @item.Persons.PersonID
+                    </div>*@
 
                 </div>
 
@@ -56,27 +55,12 @@
 
            @await Html.PartialAsync("~/Views/Comment/CommentAdd.cshtml")
 
-           @await Component.InvokeAsync("CommentListByEntry", new { id = ViewBag.i })
+           
 
         </div>
-        }
+        @await Component.InvokeAsync("CommentListByEntry", new { id = ViewBag.i })
 
     </div>
     <!-- Pie Chart -->
-    <div class="col-xl-4 col-lg-5 ">
-        <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Önerme</h6>
-
-            </div>
-            <!-- Card Body -->
-            <div class="card-body">
-                <div class="chart-pie pt-4 pb-2">
-                    <canvas id="myPieChart"></canvas>
-                </div>
-
-            </div>
-        </div>
-    </div>
+   
 </div>

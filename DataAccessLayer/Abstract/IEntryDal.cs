@@ -22,6 +22,8 @@ namespace DataAccessLayer.Abstract
         List<Entry> GetListWithDepartmantByPersonID(int id);
         Entry GetEntryWithPersonByID(int id);
 
+
+
         //List<Entry> GetListWithDepartmantOrderByLike();
 
         /*aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa*/

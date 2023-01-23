@@ -7,10 +7,10 @@
 @foreach (var item in Model)
 {
     <div class="col-xl-8 col-lg-7">
-        <div class="card shadow mb-4">
+        <div class="card shadow mb-4 bg-gray-400">
             <!-- Card Header - Dropdown -->
-        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">@item.Departmant.University.UniversityName - @item.Departmant.DepartmantName  </h6>
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between ">
+                <h6 class="m-0 font-weight-bold "style="color:purple">@item.Departmant.University.UniversityName - @item.Departmant.DepartmantName  </h6>
                 <div class="dropdown no-arrow">
                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -26,7 +26,7 @@
                 </div>
             </div>
             <!-- Card Body -->
-        <div class="card-body">
+        <div class="card-body" style="color:saddlebrown">
                 @item.EntryContent
             </div>
             <hr />
@@ -34,17 +34,17 @@
 
                 <div class="row container-fluid">
                     <li>
-                        <a href="#">
+                        <a href="#" style="color:black">
                             <i class="far fa-calendar-alt"></i> @(((DateTime)item.EntryCreateDate).ToString("dd-MMM-yyyy"))
                         </a>
                     </li>
-                    <li class="mx-2">
-                        <a href="#">
+                    <li class="mx-2" >
+                        <a href="#" style="color:black">
                             <i class="far fa-thumbs-up"></i> 201 Likes
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="#" style="color:black">
                             <i class="far fa-comment"></i> 15 Comments
                         </a>
                     </li>

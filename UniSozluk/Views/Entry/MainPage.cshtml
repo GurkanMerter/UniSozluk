@@ -5,16 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="row">
+<div class="row ">
 
     <!-- Area Chart -->
     <div class="col-xl-7 col-lg-7">
         @foreach (var item in Model)
         {
-            <div class="card shadow mb-4">
+            <div class="card shadow mb-4 bg-gray-400">
                 <!-- Card Header - Dropdown -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary"> @item.Departmant.University.UniversityName - @item.Departmant.DepartmantName </h6>
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between ">
+                    <h6 class="m-0 font-weight-bold " style="color:purple"> @item.Departmant.University.UniversityName - @item.Departmant.DepartmantName </h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -29,17 +29,17 @@
                 <!-- Card Body -->
             <div class="card-body">
                     @*<div class="chart-area"><canvas id="myAreaChart"></canvas></div>*@
-                    <a href="~/Entry/EntryReadAll/@item.EntryID/">@item.EntryContent</a>
+                    <a href="~/Entry/EntryReadAll/@item.EntryID/" style="color:saddlebrown">@item.EntryContent</a>
                 </div>
                 <hr />
                 <div class="mb-3">
                     <div class="row container">
-                        <div class="col-7">
-                            <a href="#">
+                        <div class="col-7" >
+                            <a href="#" style="color:black">
                                 <i class="far fa-calendar-alt"></i> @(((DateTime)item.EntryCreateDate).ToString("dd-MMM-yyyy"))
-                            </a><a href="#">
+                            </a><a href="#" style="color:black">
                                 <i class="far fa-thumbs-up pl-2"></i> 201 Likes
-                            </a><a href="#">
+                            </a><a href="#" style="color:black">
                                 <i class="far fa-comment pl-2"></i> 15 Comments
                             </a>
                         </div>
@@ -58,7 +58,7 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Önerme</h6>
+                <h6 class="m-0 font-weight-bold " style="color:purple">Önerme</h6>
 
             </div>
             <!-- Card Body -->

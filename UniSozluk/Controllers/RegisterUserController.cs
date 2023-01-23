@@ -57,6 +57,8 @@ namespace UniSozluk.Controllers
                     LastName = u.LastName,
                     University = u.University.ToString(),
                     Departmant = u.DepartmantID.ToString() ,
+                    PhoneNumber= u.PhoneNumber,
+                    
                 };
 
                 
@@ -75,7 +77,7 @@ namespace UniSozluk.Controllers
                         PersonNickName = u.NickName,
                         PersonPassword = u.Password,
                         PersonStatus = true,
-                        PersonTelNo = "5554441256"
+                        PersonTelNo = u.PhoneNumber,
 
                     };
                     pm.TAdd(person);

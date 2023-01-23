@@ -22,6 +22,10 @@ namespace UniSozluk.Models
         [Required(ErrorMessage = "Kullanıcı Adı Giriniz...")]
         public string NickName { get; set; }
 
+        [Display(Name = "Telefon Numarası")]
+        [Required(ErrorMessage = "Telefon Numaranızı Giriniz...")]
+        public string PhoneNumber { get; set; }
+
         [Display(Name = "Üniversite")]
         public int University { get; set; }
 
