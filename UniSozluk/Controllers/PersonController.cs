@@ -28,7 +28,7 @@ namespace UniSozluk.Controllers
         }
 
 
-        [Authorize]
+        [Authorize(Roles = "Admin,Person")]
         public IActionResult Index(int id)
         {
 
@@ -45,6 +45,7 @@ namespace UniSozluk.Controllers
             return View(value);
         }
 
+        [Authorize(Roles = "Admin,Person")]
         [HttpGet]
         public async Task<IActionResult> PersonEdit()
         {
@@ -74,6 +75,7 @@ namespace UniSozluk.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin,Person")]
         [HttpPost]
         public async Task<IActionResult> PersonEdit(UserUpdateViewModel model)
         {

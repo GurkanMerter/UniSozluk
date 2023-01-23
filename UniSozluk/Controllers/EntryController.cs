@@ -11,10 +11,11 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
 using DataAccessLayer.Concrete;
 using System.Configuration;
+using Microsoft.AspNetCore.Identity;
 
 namespace UniSozluk.Controllers
 {
-    [AllowAnonymous]
+    
     public class EntryController : Controller
     {
 
@@ -25,7 +26,7 @@ namespace UniSozluk.Controllers
         UserManager userManager = new UserManager(new EfUserRepository());
         Context context = new Context();
 
-
+        [AllowAnonymous]
         public IActionResult MainPage()
         {
             //sisteme authantica olmuş kullanıcıya göre veri gerişi yapmak istiyorum;
@@ -38,6 +39,7 @@ namespace UniSozluk.Controllers
             return View(values);
         }
 
+        [Authorize(Roles = "Admin,Person")]
         public IActionResult EntryListAll()//Personin tüm entryleri
         {
             var username = User.Identity.Name;
@@ -48,7 +50,7 @@ namespace UniSozluk.Controllers
             return View(values);
         }
 
-
+        [Authorize(Roles = "Admin,Person")]
         public IActionResult EntryDelete(int id)//Personin tüm entryleri
         {
             var value = em.TGetById(id);
@@ -56,7 +58,7 @@ namespace UniSozluk.Controllers
             return RedirectToAction("EntryListAll");
         }
 
-
+        [Authorize(Roles = "Admin,Person")]
         [HttpGet]
         public IActionResult EntryEdit(int id)//Personin tüm entryleri
         {
@@ -77,7 +79,7 @@ namespace UniSozluk.Controllers
 
             return View(value);
         }
-
+        [Authorize(Roles = "Admin,Person")]
         [HttpPost]
         public IActionResult EntryEdit(Entry entry)//Personin tüm entryleri
         {
@@ -92,14 +94,14 @@ namespace UniSozluk.Controllers
             em.TUpdate(entry);
             return RedirectToAction("EntryListAll");
         }
-
+        [Authorize(Roles = "Admin,Person")]
         public IActionResult EntryReadAll(int id)
         {
             ViewBag.i = id; //gönderdiğimiz id'yi yazdırmak için;
             var values = em.GetEntryWithUniversityByID(id);
             return View(values);
         }
-
+        [Authorize(Roles = "Admin,Person")]
         [HttpGet]
         public IActionResult EntryAdd()
         {
@@ -136,7 +138,7 @@ namespace UniSozluk.Controllers
 
             return View();
         }
-
+        [Authorize(Roles = "Admin,Person")]
         [HttpPost]
         public IActionResult EntryAdd(Entry e)
         {

@@ -31,7 +31,7 @@ namespace UniSozluk_JWT.Controllers
             _config = config;
         }
 
-        [HttpPost("Login")]
+        [HttpPost("Action")]
         public async Task<IActionResult> Login(UserLoginViewModel loginModel)
         {
             if (!ModelState.IsValid)

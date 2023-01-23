@@ -44,6 +44,7 @@ namespace UniSozluk
                 Config.Filters.Add(new AuthorizeFilter(policy));
             });
             services.AddMvc();
+           
             services.AddAuthentication(
                 CookieAuthenticationDefaults.AuthenticationScheme
                 ).AddCookie(x => {
@@ -51,14 +52,21 @@ namespace UniSozluk
                 });
             services.ConfigureApplicationCookie(options =>
             {
-                //cookie setting
-                options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(100);
                 options.LoginPath = "/Login/Index/";
+                options.Cookie = new CookieBuilder
+                {
+                    Name = "UniSozlukUserCookie",
+                    HttpOnly = false,
+                    SecurePolicy = CookieSecurePolicy.Always
+                };
+                //cookie setting
+                
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(100);
+               
                 options.SlidingExpiration = true;
                 options.AccessDeniedPath = new PathString("/Login/AccessDenied/");
-            }
-            ) ;
+            });
+            services.AddAuthorization();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -82,8 +90,9 @@ namespace UniSozluk
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -92,7 +101,7 @@ namespace UniSozluk
                   pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Entry}/{action=MainPage}/{id?}");
                 
             });
 

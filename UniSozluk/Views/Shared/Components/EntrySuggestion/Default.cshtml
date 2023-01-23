@@ -1,0 +1,28 @@
+﻿@using EntityLayer.Concrete
+@model List<Entry>
+@{
+    Layout = null;
+}
+
+<div class="tech-btm">
+    <h3>Son Postlar</h3>
+    @foreach (var item in Model)
+    {
+            <div class="blog-grids row mb-3">
+                
+                <div class="">
+
+                    <h5>
+                        <a href="/Entry/EntryReadAll/@item.EntryID" style="color:saddlebrown">@item.EntryContent.Substring(0,10)... </a>
+                    </h5>
+                    <div class="sub-meta">
+                        <span>
+                            <i class="far fa-clock"></i> @(((DateTime)
+                    item.EntryCreateDate).ToString("dd-MMM-yyyy"))
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+    }
+</div>

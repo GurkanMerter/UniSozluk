@@ -17,6 +17,11 @@ namespace BussinesLayer.Concrete
             _entryDal = entryDal;
         }
 
+        public List<Entry> GetEntryListWithUniversityLast3Entry() 
+        {
+            return _entryDal.GetListWithUniversity().Take(3).ToList();
+        }
+
         public List<Entry> GetEntryByID(int id)
         {
             return  _entryDal.GetListAll(x=>x.EntryID == id);

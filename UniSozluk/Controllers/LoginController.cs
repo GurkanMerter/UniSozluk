@@ -51,13 +51,16 @@ namespace UniSozluk.Controllers
             {
                 var loginUser= await _userManager.FindByNameAsync(user.usernickname);
                 var result = await _signInManager.PasswordSignInAsync(user.usernickname, user.password, false, true);
+                
                 //overload -> persistent,çerezlerde hatırlasın mı?
                 //overload-> lockoutOnFailure, kişinin authantice olurken hatalı girişte sistem bir süre banlansın 
                 if (result.Succeeded)
                 {
-                    HttpContext.Session.SetString("Id", loginUser.Id.ToString());
-                    HttpContext.Session.SetString("NickName", loginUser.UserName);
-                    HttpContext.Session.SetString("Token", GenerateJwtToken(loginUser));
+                    //HttpContext.Session.SetString("Id", loginUser.Id.ToString());
+                    //HttpContext.Session.SetString("NickName", loginUser.UserName);
+                    //HttpContext.Session.SetString("Token", GenerateJwtToken(loginUser));
+                    var userRole = await _userManager.GetRolesAsync(loginUser);
+
                     return RedirectToAction("MainPage", "Entry");
                 }
                 else

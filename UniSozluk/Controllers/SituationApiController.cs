@@ -11,7 +11,7 @@ namespace UniSozluk.Controllers
 {
     public class SituationApiController : Controller
     {
-        [Authorize]
+        [Authorize(Roles = "Admin,Person")]
         public IActionResult Index()
         {
             var httpClient = new HttpClient();

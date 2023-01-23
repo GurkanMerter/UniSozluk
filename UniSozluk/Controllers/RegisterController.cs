@@ -9,13 +9,14 @@ using System.Linq;
 
 namespace UniSozluk.Controllers
 {
+    [AllowAnonymous]
     public class RegisterController : Controller
     {
         PersonManager um = new PersonManager(new EfPersonRepository());
         UniversityManager unim = new UniversityManager(new EfUniversityRepository()); 
         DepartmantManager dm = new DepartmantManager(new EfDepartmantRepository());
 
-        [AllowAnonymous]
+        
         [HttpGet]
         public IActionResult Index()
         {
@@ -24,7 +25,7 @@ namespace UniSozluk.Controllers
         }
 
 
-        [AllowAnonymous]
+        
         [HttpPost]
         public IActionResult Index(Person Person)
         {
@@ -34,7 +35,7 @@ namespace UniSozluk.Controllers
         
         }
 
-        [AllowAnonymous]
+        
         public JsonResult GetDepartmantList(int id)
         {
             List<SelectListItem> Departmant = dm.GetListByUniversity(id).OrderBy(x=>x.DepartmantName).Select(x =>

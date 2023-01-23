@@ -3,8 +3,10 @@ using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using JetBrains.Annotations;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Data;
 using System.Linq;
 
 namespace UniSozluk.Controllers
@@ -23,7 +25,8 @@ namespace UniSozluk.Controllers
         {
             return View();
         }
-        
+
+        [Authorize(Roles = "Admin,Person")]
         [HttpGet]
         public PartialViewResult CommentAdd()
         {
@@ -34,7 +37,7 @@ namespace UniSozluk.Controllers
 
             return PartialView();
         }
-
+        [Authorize(Roles = "Admin,Person")]
         [HttpPost]
         public IActionResult CommentAdd(Comment com,int id)
         {
