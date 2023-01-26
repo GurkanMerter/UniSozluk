@@ -13,7 +13,6 @@ namespace DataAccessLayer.Repositories
     {
         public void Delete(T t)
         {
-            //throw new NotImplementedException();
             using var c = new Context();
             c.Remove(t);
             c.SaveChanges();
@@ -21,21 +20,18 @@ namespace DataAccessLayer.Repositories
 
         public T GetByID(int id)
         {
-            //throw new NotImplementedException();
             using var c = new Context();
             return c.Set<T>().Find(id); //id ye gelen değerleri göre bize verileri getiriyo olucak
         }
 
         public List<T> GetListAll()
         {
-            //throw new NotImplementedException();
             using var c = new Context();
             return c.Set<T>().ToList();//sete bağlı olarak, kullanabileceği entity olmadığı için dışardan alıcak.
         }
 
         public void Insert(T t)
         {
-            //throw new NotImplementedException();
             using var c = new Context();
             c.Entry(t).State = EntityState.Added;
             c.Add(t);
@@ -46,14 +42,12 @@ namespace DataAccessLayer.Repositories
         //implement ederek bu yapıyı burada kullanabiliriz;
         public List<T> GetListAll(Expression<Func<T, bool>> filter)
         {
-            //throw new NotImplementedException();
             using var c = new Context();
             return c.Set<T>().Where(filter).ToList();//ile listeleme işlemini gerçekleştiricez.
         }
 
         public void Update(T t)
         {
-            //throw new NotImplementedException();
             using var c = new Context();
             c.Entry(t).State = EntityState.Modified; //updatelerken oluşan hatanın önüne geçmek için kullandık
             c.Update(t);

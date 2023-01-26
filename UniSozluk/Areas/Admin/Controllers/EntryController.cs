@@ -19,10 +19,26 @@ namespace UniSozluk.Areas.Admin.Controllers
         DepartmantManager dm = new DepartmantManager(new EfDepartmantRepository());
         public IActionResult Index()
         {
-            var values = em.GetEntryListWithDepartmant();
+            var values = em.GetEntryListWithDepartmant().Where(x=>x.EntryStatus==true);
 
             return View(values);
         }
+
+        public IActionResult EntryApproval()
+        {
+            var values = em.GetEntryListWithDepartmant().Where(x=>x.EntryStatus==false);
+
+            return View(values);
+        }
+
+        public IActionResult EntryApprove(int id)
+        {
+            var entry = em.TGetById(id);
+            entry.EntryStatus= true;
+            em.TUpdate(entry);
+
+            return RedirectToAction("EntryApproval");
+       }
 
         [HttpGet]
         public IActionResult EntryEdit(int id)
@@ -58,7 +74,7 @@ namespace UniSozluk.Areas.Admin.Controllers
         {
             var value = em.TGetById(id);
             em.TDelete(value);
-            return RedirectToAction("EntryListAll");
+            return RedirectToAction("INDEX");
         }
     }
 }

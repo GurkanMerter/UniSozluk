@@ -34,7 +34,7 @@ namespace UniSozluk.Controllers
             ViewBag.v = username;
             var usermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
             var personid = context.Users.Where(x => x.Email == usermail).Select(y => y.Id).FirstOrDefault();
-            var values = em.GetEntryListWithDepartmant();
+            var values = em.GetEntryListWithDepartmant().Where(x=>x.EntryStatus==true);
 
             return View(values);
         }
@@ -86,7 +86,7 @@ namespace UniSozluk.Controllers
             var username = User.Identity.Name;
             var usermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
             var personID = context.Users.Where(x => x.Email == usermail).Select(y => y.Id).FirstOrDefault();
-            //var personUni = context.Persons.Where(x => x.PersonID == personID).Select(y => y.Departmant.UniversityID).FirstOrDefault().Value;
+           
 
             entry.EntryCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             entry.EntryStatus = true;
@@ -105,17 +105,14 @@ namespace UniSozluk.Controllers
         [HttpGet]
         public IActionResult EntryAdd()
         {
-            //var Person = usm.TGetById(1);
-            //var university = um.GetUniversityByPerson(Person);
-            //ViewBag.u = university;
+            
 
            
             var username = User.Identity.Name;
             var usermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
             var personID = context.Users.Where(x => x.Email == usermail).Select(y => y.Id).FirstOrDefault();
             var universityID = context.Users.Where(x=> x.Email==usermail).Select(y=>y.University).FirstOrDefault();
-            //var Person = usm.GetPersonWithUniversityByID(personID);
-            //ViewBag.university = Person.Departmant.University.UniversityName.ToString();
+            
 
             List<SelectListItem> depValue = ((List<SelectListItem>)(from x in dm.GetListByUniversity(Convert.ToInt32(universityID)) //universityıd
                                                                     select new SelectListItem
@@ -151,7 +148,7 @@ namespace UniSozluk.Controllers
 
             if (result.IsValid)
             {
-                e.EntryStatus = true;
+                e.EntryStatus = false;
                 e.EntryCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
                 e.PersonID = personID;
                 em.TAdd(e);

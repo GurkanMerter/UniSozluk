@@ -28,7 +28,6 @@
                 </div>
                 <!-- Card Body -->
             <div class="card-body">
-                    @*<div class="chart-area"><canvas id="myAreaChart"></canvas></div>*@
                     <a href="~/Entry/EntryReadAll/@item.EntryID/" style="color:saddlebrown">@item.EntryContent</a>
                 </div>
                 <hr />
@@ -37,10 +36,6 @@
                         <div class="col-7" >
                             <a href="#" style="color:black">
                                 <i class="far fa-calendar-alt"></i> @(((DateTime)item.EntryCreateDate).ToString("dd-MMM-yyyy"))
-                            </a><a href="#" style="color:black">
-                                <i class="far fa-thumbs-up pl-2"></i> 201 Likes
-                            </a><a href="#" style="color:black">
-                                <i class="far fa-comment pl-2"></i> 15 Comments
                             </a>
                         </div>
 

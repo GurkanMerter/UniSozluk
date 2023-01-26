@@ -1,0 +1,50 @@
+﻿@using EntityLayer.Concrete
+@model IEnumerable<EntityLayer.Concrete.Entry>
+@{
+    ViewData["Title"] = "EntryApproval";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@foreach (var item in Model)
+{
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>@item.Departmant.University.UniversityName - @item.Departmant.DepartmantName</h5>
+                    <div class="ibox-tools">
+
+                    <a class="dropdown-toggle" href="/Admin/Entry/EntryApprove/@item.EntryID">
+                            <i class="fa fa-wrench">Onayla</i>
+                        </a>
+                    <a class="dropdown-toggle" href="/Admin/Entry/EntryEdit/@item.EntryID">
+                            <i class="fa fa-wrench">Düzenle</i>
+                        </a>
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <div class="scroll_content">
+                    @item.EntryContent
+                    </div>
+                </div>
+                <div class="ibox-footer">
+                    <div class="row container">
+                        <div class="col-7">
+                            <a href="#">
+                                <i class="far fa-calendar-alt"></i> @(((DateTime)item.EntryCreateDate).ToString("dd-MMM-yyyy"))
+                            </a><a href="#">
+                                <i class="far fa-thumbs-up pl-2"></i> 201 Likes
+                            </a><a href="#">
+                                <i class="far fa-comment pl-2"></i> 15 Comments
+                            </a>
+                        </div>
+
+                    @await Component.InvokeAsync("GetPersonNickName",new {id=item.PersonID})
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+}
+

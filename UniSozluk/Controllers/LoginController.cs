@@ -56,9 +56,7 @@ namespace UniSozluk.Controllers
                 //overload-> lockoutOnFailure, kişinin authantice olurken hatalı girişte sistem bir süre banlansın 
                 if (result.Succeeded)
                 {
-                    //HttpContext.Session.SetString("Id", loginUser.Id.ToString());
-                    //HttpContext.Session.SetString("NickName", loginUser.UserName);
-                    //HttpContext.Session.SetString("Token", GenerateJwtToken(loginUser));
+                    
                     var userRole = await _userManager.GetRolesAsync(loginUser);
 
                     return RedirectToAction("MainPage", "Entry");

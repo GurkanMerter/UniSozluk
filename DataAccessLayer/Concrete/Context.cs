@@ -40,7 +40,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<Person> Persons { get; set; }
         public DbSet<EntryLike> EntryLikes { get; set; }
         public DbSet<Admin> Admins { get; set; }
-        public DbSet<Notification> Notifications { get; set; }
+        
         
 
     }

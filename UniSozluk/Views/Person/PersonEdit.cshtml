@@ -19,44 +19,40 @@
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <label> Ad:</label>
                 @Html.TextBoxFor(x=>x.PersonFirstName,new {@class = "form-control"})
-                @* <input type="text" class="form-control form-control-Person" value="@Model.PersonFirstName">*@
+                
             </div>
             <div class="col-sm-6">
                 <label>SoyAd:</label>
                 @Html.TextBoxFor(x=>x.PersonLastName,new {@class = "form-control"})
-                @*<input type="text" class="form-control form-control-Person" value=@Model.PersonLastName>*@
+               
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-6">
                 <label>Nickname:</label>
                 @Html.TextBoxFor(x=>x.PersonNickName,new {@class = "form-control"})
-                @*<input type="text" class="form-control form-control-Person" value=@Model.PersonNickName>*@
+               
             </div>
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <label>Tel no:</label>
                 @Html.TextBoxFor(x=>x.PersonTelNo,new {@class = "form-control"})
-                @*<input type="number" class="form-control form-control-Person" value="@Model.PersonTelNo">*@
+             
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-6">
                 <label>Mail:</label>
                 @Html.TextBoxFor(x=>x.PersonMail,new {@class = "form-control"})
-
-                @*<input type="email" class="form-control form-control-Person" value=@Model.PersonMail>*@
             </div>
             <div class="col-sm-6">
                 <label>Şifre:</label>
                 @Html.TextBoxFor(x=>x.PersonPassword,new {@class = "form-control"})
-                @*<input type="password" class="form-control form-control-Person" value=@Model.PersonPassword>*@
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <label>Okul:</label>
                 @Html.TextBoxFor(x=>x.Departmant.University.UniversityName,new {@class = "form-control", @readonly="readonly"})
-                @*<input type="text" class="form-control form-control-Person" value="@Model.Departmant.University.UniversityName">*@
             </div>
             <div class="col-sm-6 " style="border-radius:30px">
                 <label>Bölüm:</label>

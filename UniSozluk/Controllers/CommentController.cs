@@ -30,10 +30,7 @@ namespace UniSozluk.Controllers
         [HttpGet]
         public PartialViewResult CommentAdd()
         {
-            //var username = User.Identity.Name;
-            //var usermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
-            //var personID = context.Persons.Where(x => x.PersonMail == usermail).Select(y => y.PersonID).FirstOrDefault();
-            //var commentEntryID = context.Entries.Where(x => x.Persons.PersonNickName == username).Select(y => y.EntryID).FirstOrDefault();
+           
 
             return PartialView();
         }
@@ -44,7 +41,7 @@ namespace UniSozluk.Controllers
             var username = User.Identity.Name;
             var usermail = context.Users.Where(x => x.UserName == username).Select(y => y.Email).FirstOrDefault();
             var personID = context.Persons.Where(x => x.PersonMail == usermail).Select(y => y.PersonID).FirstOrDefault();
-            //var commentEntryID = context.Entries.Where(x => x.Persons.PersonNickName== username).Select(y => y.EntryID).FirstOrDefault();
+            
             var commentEntryID = id;
             
             com.CommentDate=DateTime.Parse(DateTime.Now.ToShortDateString());

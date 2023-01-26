@@ -68,6 +68,7 @@ namespace UniSozluk.Controllers
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "Person");
                     Person person = new Person
                     {
                         PersonFirstName = u.FirsName,

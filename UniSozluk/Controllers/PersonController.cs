@@ -41,7 +41,7 @@ namespace UniSozluk.Controllers
 
             var value = pm.GetPersonWithDepartmantAndUniversity(id);
             ViewBag.universityEntryCount = context.Entries.Where(x => x.Departmant.University.UniversityID == value.Departmant.University.UniversityID).Count();
-           // ViewBag.PersonEntryCount = context.Entries.Where(x => x.app == id).Count();
+           
             return View(value);
         }
 
@@ -49,7 +49,7 @@ namespace UniSozluk.Controllers
         [HttpGet]
         public async Task<IActionResult> PersonEdit()
         {
-            //var Person = pm.GetPersonWithUniversityByID(id);
+            
 
             var value = await _userManager.FindByNameAsync(User.Identity.Name);
             UserUpdateViewModel model = new UserUpdateViewModel();
@@ -57,20 +57,7 @@ namespace UniSozluk.Controllers
             model.name = value.FirstName;
             model.surname = value.LastName;
             model.nickname = value.UserName;
-            //universite ve departmant ekle
-
-            //List<SelectListItem> DepartmantValue = (from x in dm.GetListByUniversityID((int)Person.Departmant.UniversityID)
-            //                                        select new SelectListItem
-            //                                        {
-            //                                            Text = x.DepartmantName,
-            //                                            Value = x.DepartmantID.ToString()
-            //                                        }
-            //                                        ).ToList();
-            //ViewBag.depValue = DepartmantValue;
-
-
-            //unigetbyid(value.University)
-            //deplistbyunid(value.University)
+           
 
             return View(model);
         }
@@ -90,11 +77,7 @@ namespace UniSozluk.Controllers
             return RedirectToAction("Index");
         }
 
-        //[HttpGet]
-        //public IActionResult PersonAdd()
-        //{
-        //    return View();
-        //}
+        
 
 
 
