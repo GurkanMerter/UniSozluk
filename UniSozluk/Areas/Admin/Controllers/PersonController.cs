@@ -2,6 +2,7 @@
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -18,6 +19,7 @@ namespace UniSozluk.Areas.Admin.Controllers
     {
         PersonManager usm = new PersonManager(new EfPersonRepository());
         DepartmantManager dm = new DepartmantManager(new EfDepartmantRepository());
+        private readonly UserManager<AppUser> _userManager;
         public IActionResult Index(int page = 1)
         {
             var values = usm.GetPersonsWithDepartmantAndEntries().ToPagedList(page, 25);
@@ -55,7 +57,9 @@ namespace UniSozluk.Areas.Admin.Controllers
         public IActionResult PersonDelete(int id)
         {
             var value = usm.TGetById(id);
-            usm.TDelete(value);
+            usm.TDelete(value); 
+            var user = _userManager.Users.Where(x=>x.Id== id).FirstOrDefault();
+            _userManager.DeleteAsync(user);
             return RedirectToAction("Index");
         }
     }
